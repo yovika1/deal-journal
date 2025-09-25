@@ -26,7 +26,7 @@ export const FeaturedOffers = () => {
     const fetchFeaturedOffers = async () => {
       try {
         const res = await axios.get(`${API_BASE}/getoffers/featured`);
-        setOffers(res.data);
+setOffers(res.data.offers || []);
       } catch (err) {
         console.error("Error fetching featured offers:", err);
         setError("⚠️ Failed to load featured offers. Please try again later.");
@@ -63,7 +63,7 @@ export const FeaturedOffers = () => {
             960: { slidesPerView: 3 },
           }}
         >
-          {offers.map((offer) => (
+{(Array.isArray(offers) ? offers : []).map((offer) => (
             <SwiperSlide key={offer._id}>
               <Card
                 sx={{

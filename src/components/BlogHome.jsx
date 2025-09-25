@@ -24,18 +24,17 @@ export const BlogHome = () => {
     (async () => {
       try {
         const res = await axios.get(`${API_BASE}/getBlogs`);
-
-        const mapped = (res.data || []).map((item) => ({
-          _id: item._id,
-          productName: item.productName,
-          productTitle: item.productTitle,
-          imageUrl: item.imageUrl,
-          productUrl: item.productUrl,
-          category: item.category || "general",
-          details: item.details || [],
-        }));
-
-        setBlogs(mapped);
+    
+        const mapped = ((res.data && res.data.data) || []).map(item => ({
+  _id: item._id,
+  productName: item.productName,
+  productTitle: item.productTitle,
+  imageUrl: item.imageUrl,
+  productUrl: item.productUrl,
+  category: item.category || "general",
+  details: item.details || [],
+}));
+setBlogs(mapped);
       } catch (e) {
         console.error("Error fetching blogs:", e);
       }
