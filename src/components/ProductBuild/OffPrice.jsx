@@ -1,4 +1,3 @@
-// src/components/OffPrice.jsx
 import React from "react";
 import { Box, Typography, Divider } from "@mui/material";
 import { motion } from "framer-motion";
@@ -37,7 +36,7 @@ export const OffPrice = ({ blog, fadeInUp }) => {
               return (
                 <Typography
                   key={i}
-                  variant="body1" // 👈 smaller than h5
+                  variant="body1" // 
                   sx={{
                     mb: 0.5,
                     fontWeight: i === lastPriceIndex ? "bold" : "normal",

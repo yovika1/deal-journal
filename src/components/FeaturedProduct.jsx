@@ -24,13 +24,15 @@ export const FeaturedOffers = () => {
 
   useEffect(() => {
     const fetchFeaturedOffers = async () => {
-      try {
-        const res = await axios.get(`${API_BASE}/getoffers/featured`);
-setOffers(res.data.offers || []);
-      } catch (err) {
-        console.error("Error fetching featured offers:", err);
-        setError("⚠️ Failed to load featured offers. Please try again later.");
-      }
+try {
+  const res = await axios.get(`${API_BASE}/getoffers/featured`);
+  console.log("Featured offers response:", res.data);
+  setOffers(res.data?.offers || res.data?.data || res?.data || []);
+} catch (err) {
+  console.error("Error fetching featured offers:", err);
+  setError("⚠️ Failed to load featured offers. Please try again later.");
+}
+
     };
     fetchFeaturedOffers();
   }, []);
@@ -62,8 +64,8 @@ setOffers(res.data.offers || []);
             600: { slidesPerView: 2 },
             960: { slidesPerView: 3 },
           }}
-        >
-{(Array.isArray(offers) ? offers : []).map((offer) => (
+         >
+        {offers?.map((offer) => (
             <SwiperSlide key={offer._id}>
               <Card
                 sx={{
@@ -78,7 +80,7 @@ setOffers(res.data.offers || []);
                 }}
               >
                 <img
-                  src={offer.imageUrl || offer.image}
+                  src={offer?.imageUrl || offer?.image}
                   alt={offer.productTitle || offer.title}
                   style={{ width: "100%", height: 180, objectFit: "cover" }}
                 />
@@ -118,6 +120,7 @@ setOffers(res.data.offers || []);
                 <CardActions sx={{ p: 2 }}>
                   <Button
                     variant="contained"
+                    color="secondary"
                     fullWidth
                     href={offer.productUrl || offer.link}
                     target="_blank"

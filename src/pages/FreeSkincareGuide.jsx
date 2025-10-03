@@ -100,7 +100,7 @@ export const FreeSkincareGuide = () => {
             variant="contained"
             color="success"
             sx={{ borderRadius: "50px", px: 3, "&:hover": { transform: "scale(1.05)" } }}
-            href="https://wa.me/919817432789"
+            href="https://wa.me/919817457779"
             target="_blank"
           >
             Ask on WhatsApp

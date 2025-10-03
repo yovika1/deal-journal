@@ -32,7 +32,7 @@ export const BlogDetail = () => {
     (async () => {
       try {
         const res = await axios.get(`${API_BASE}/getBlogs/${id}`);
-        setBlog(res.data);
+        setBlog(res.data.blog|| []);
       } catch (e) {
         console.error(e);
       }

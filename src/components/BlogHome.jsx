@@ -10,37 +10,39 @@ import {
 import { Helmet } from "react-helmet-async";
 import { BlogCard } from "../components/BlogCards";
 import { EmailLeadMagnet } from "../pages/EmailLeadMagnet";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FeaturedOffers } from "./FeaturedProduct";
 import API_BASE from "../config";
+import axios from "axios";
 
 export const BlogHome = () => {
   const [blogs, setBlogs] = useState([]);
   const [leadOpen, setLeadOpen] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const res = await axios.get(`${API_BASE}/getBlogs`);
-    
-        const mapped = ((res.data && res.data.data) || []).map(item => ({
-  _id: item._id,
-  productName: item.productName,
-  productTitle: item.productTitle,
-  imageUrl: item.imageUrl,
-  productUrl: item.productUrl,
-  category: item.category || "general",
-  details: item.details || [],
-}));
-setBlogs(mapped);
-      } catch (e) {
-        console.error("Error fetching blogs:", e);
-      }
-    })();
-  }, []);
+ useEffect(() => {
+  (async () => {
+    try {
+      const res = await axios.get(`${API_BASE}/getBlogs`);
 
+      const mapped = (res.data.blogs || []).map((item) => ({
+        _id: item._id,
+        productName: item.productName,
+        productTitle: item.productTitle,
+        imageUrl: item.imageUrl,
+        productUrl: item.productUrl,
+        category: item.category || "general",
+        details: item.details || [],
+      }));
+
+      setBlogs(mapped);
+    } catch (e) {
+      console.error("Error fetching blogs:", e);
+    }
+  })();
+}, []);
+
+  
   return (
     <Container maxWidth="lg" sx={{ mt: 4 }}>
       {/* ✅ SEO Meta Tags */}

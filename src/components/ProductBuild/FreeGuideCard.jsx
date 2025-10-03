@@ -97,7 +97,7 @@ export const FreeGuideCard = ({ guide, index }) => {
                   background:
                     index % 2 === 0
                       ? "linear-gradient(45deg, #ff4081, #ff9100)"
-                      : "linear-gradient(45deg, #42a5f5, #478ed1)",
+                      : "linear-gradient(45deg, #a613fbff, #a613fbff)",
                   "&:hover": { opacity: 0.9, transform: "scale(1.05)" },
                 }}
                 href={guide.productLink}

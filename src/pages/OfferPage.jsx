@@ -29,7 +29,7 @@ export const OffersPage = () => {
     (async () => {
       try {
         const res = await axios.get(`${API_BASE}/getoffers`); 
-        setOffers(res.data);
+        setOffers(res?.data);
       } catch (e) {
         console.error("Error fetching offers:", e);
       }
@@ -71,10 +71,33 @@ export const OffersPage = () => {
         sx={{ mb: 4 }}
       >
         <ToggleButtonGroup
-          value={cat}
-          exclusive
-          onChange={(e, v) => setCat(v || "all")}
-        >
+    value={cat}
+    exclusive
+    onChange={(e, v) => setCat(v || "all")}
+    sx={{
+      backgroundColor: "rgba(255,255,255,0.9)",
+      borderRadius: 3,
+      boxShadow: 3,
+      "& .MuiToggleButton-root": {
+        px: 3,
+        py: 1,
+        fontWeight: "bold",
+        color: "#555",
+        border: "none",
+        transition: "all 0.3s",
+      },
+      "& .Mui-selected": {
+        backgroundColor: "#ff40ffff",
+        color: "#272323ff",
+        "&:hover": {
+          backgroundColor: "#ff40ffff",
+        },
+      },
+      "& .MuiToggleButton-root:hover": {
+        backgroundColor: "rgba(220, 64, 255, 0.1)",
+      },
+    }}
+  >
           <ToggleButton value="all">All</ToggleButton>
           <ToggleButton value="fashion">Fashion</ToggleButton>
           <ToggleButton value="cosmetics">Cosmetics</ToggleButton>
@@ -100,14 +123,13 @@ export const OffersPage = () => {
         </Typography>
       ) : (
         <Grid container spacing={4}>
-          {shown.map((p) => (
+          {shown?.map((p) => (
             <Grid item xs={12} sm={6} md={4} key={p._id || p.productTitle}>
               <Card
                 sx={{
                   borderRadius: 4,
-                    minWidth: 250,
-                    maxWidth: 322,
-                  height: "100%",
+                  width:300,
+                  height: 480,
                   display: "flex",
                   flexDirection: "column",
                   boxShadow: 6,
@@ -121,7 +143,8 @@ export const OffersPage = () => {
                 {/* Image */}
                 <CardMedia
                   component="img"
-                  height="230"
+                  width='100%'
+                  height="180"
                   image={p.imageUrl}
                   alt={p.title}
                   sx={{ objectFit: "cover", borderTopLeftRadius: 16, borderTopRightRadius: 16 }}
@@ -188,7 +211,7 @@ export const OffersPage = () => {
                   <Button
                     size="large"
                     variant="contained"
-                    color="primary"
+                    color="secondary"
                     fullWidth
                     onClick={() => window.open(p.affiliateUrl, "_blank")}
                     sx={{ borderRadius: 3, textTransform: "none", fontWeight: "bold" }}

@@ -33,11 +33,12 @@ export const BlogList = () => {
     (async () => {
       try {
         const res = await axios.get(`${API_BASE}/getBlogs`);
-        setBlogs(res.data);
+        setBlogs(res.data.blogs || []);
       } catch (e) {
         console.error(e);
+        setBlogs([])
       }
-    })();
+    })();   
   }, []);
 
   return (
