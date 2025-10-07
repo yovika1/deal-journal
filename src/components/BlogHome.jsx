@@ -6,6 +6,7 @@ import {
   Box,
   Divider,
   Grid,
+  CircularProgress,
 } from "@mui/material";
 import { Helmet } from "react-helmet-async";
 import { BlogCard } from "../components/BlogCards";
@@ -18,6 +19,8 @@ import axios from "axios";
 export const BlogHome = () => {
   const [blogs, setBlogs] = useState([]);
   const [leadOpen, setLeadOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+
   const navigate = useNavigate();
 
  useEffect(() => {
@@ -38,6 +41,8 @@ export const BlogHome = () => {
       setBlogs(mapped);
     } catch (e) {
       console.error("Error fetching blogs:", e);
+    }finally {
+        setLoading(false);
     }
   })();
 }, []);
@@ -47,7 +52,7 @@ export const BlogHome = () => {
     <Container maxWidth="lg" sx={{ mt: 4 }}>
       {/* ✅ SEO Meta Tags */}
       <Helmet>
-        <title>Glow with Us | Beauty, Fashion & Lifestyle Blog</title>
+        <title variant="h3">Glow with Us | Beauty, Fashion & Lifestyle Blog</title>
         <meta
           name="description"
           content="Glow with Us is your go-to blog for beauty tips, skincare routines, and fashion trends. Read expert guides and shop curated product deals."
@@ -91,26 +96,38 @@ export const BlogHome = () => {
         <Button onClick={() => navigate("/bloglistpage")}>View All</Button>
       </Box>
 
-      <Grid container spacing={3}
-              sx={{
-    "& > .MuiGrid-item": {
-      display: "flex",
-    },
-  }}
-      >
-        {blogs.length > 0 ? (
-          blogs
-            .map((blog) => (
-              <Grid item xs={12} sm={6} md={4} key={blog._id}>
-                <BlogCard blog={blog} />
-              </Grid>
-            ))
-        ) : (
-          <Typography variant="body2" color="text.secondary">
-            No blogs Product available yet.
-          </Typography>
-        )}
-      </Grid>
+      {/* ✅ Show loader while fetching */}
+      {loading ? (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            minHeight: "40vh",
+          }}
+        >
+          <CircularProgress color="secondary" />
+        </Box>
+      ) : blogs.length > 0 ? (
+        <Box
+          sx={{
+            display: "flex",
+            overflowX: "auto",
+            gap: 1.5,
+            px: 1,
+            pb: 2,
+            "&::-webkit-scrollbar": { display: "none" },
+          }}
+        >
+          {blogs.map((blog) => (
+            <BlogCard key={blog._id} blog={blog} />
+          ))}
+        </Box>
+      ) : (
+        <Typography variant="body2" color="text.secondary">
+          No blogs available yet.
+        </Typography>
+      )}
 
       <Box
         sx={{
@@ -153,9 +170,20 @@ export const BlogHome = () => {
       </Box>
 
       <Grid container spacing={3}>
+         <Box
+      sx={{
+        display: "flex",
+        overflowX: "auto",
+        gap: 1.5,
+        px: 1,
+        pb: 2,
+        "&::-webkit-scrollbar": { display: "none" }, 
+      }}
+    ></Box>
         {blogs
           .filter((b) => b.category === "beauty")
           .map((blog) => (
+            
             <Grid item xs={12} sm={6} md={4} key={blog._id}>
               <BlogCard blog={blog} />
             </Grid>
@@ -168,11 +196,13 @@ export const BlogHome = () => {
         onClick={() => navigate("/explore-offers")}
         sx={{
           position: "fixed",
-          bottom: 20,
+        bottom: { xs: 12, sm: 16, md: 20 },   
           right: 20,
           borderRadius: "30px",
-          px: 3,
+        px: { xs: 2, sm: 3, md: 4 },         
           py: 1.2,
+          fontSize: { xs: "0.50rem", sm: "0.85rem", md: "1rem" },
+
           fontWeight: "bold",
           boxShadow: 3,
           zIndex: 1200,
@@ -214,7 +244,7 @@ export const BlogHome = () => {
         </Typography>
       </Box>
       
-            <FeaturedOffers/>
+            <FeaturedOffers />
 
 
       {/* ✅ Sticky Email Lead Magnet */}

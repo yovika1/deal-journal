@@ -14,11 +14,11 @@ import { StickyInBlogCTA } from "../components/StickyCTA";
 import { EmailLeadMagnet } from "./EmailLeadMagnet";
 import { TopPicks } from "../components/ProductBuild/Toppicks";
 import { BlogFeedback } from "./FeedbackBlog";
-
 import { motion } from "framer-motion";
 import { OffPrice } from "../components/ProductBuild/OffPrice";
 import { ShareButtons } from "../components/ShareBlog";
 import API_BASE from "../config";
+import { TestimonialsSection } from "../components/TestimonialsSection";
 
 export const BlogDetail = () => {
   const { id } = useParams();
@@ -175,27 +175,7 @@ export const BlogDetail = () => {
       </motion.div> */}
 
       {/* 6. Social Proof (Testimonials) */}
-      <motion.div initial="hidden" whileInView="visible" variants={fadeInUp}>
-        <Box
-          sx={{
-            background: "#fef9f4",
-            p: 3,
-            borderRadius: 3,
-            boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
-            mb: 4,
-          }}
-        >
-          <Typography variant="h6" gutterBottom>
-            💬 What Readers Say
-          </Typography>
-          <Typography variant="body1" sx={{ fontStyle: "italic" }}>
-            ⭐⭐⭐⭐⭐ “This guide helped me pick the best serum for my skin.” – Ayesha
-          </Typography>
-          <Typography variant="body1" sx={{ mt: 1, fontStyle: "italic" }}>
-            ⭐⭐⭐⭐ “Loved the recommendations! Already ordered the Vitamin C cream.” – Priya
-          </Typography>
-        </Box>
-      </motion.div>
+     <TestimonialsSection/>
 
       <motion.div initial="hidden" whileInView="visible" variants={fadeIn}>
         <Box

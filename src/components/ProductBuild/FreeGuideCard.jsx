@@ -71,7 +71,7 @@ export const FreeGuideCard = ({ guide, index }) => {
               mb: 2,
               fontSize: { xs: "0.9rem", sm: "1rem" },
               lineHeight: 1.6,
-              ml:'10%'
+              ml:'17%'
             }}
           >
             {guide.description}
@@ -92,6 +92,7 @@ export const FreeGuideCard = ({ guide, index }) => {
                   px: { xs: 2, sm: 3 },
                   py: 1.2,
                   fontWeight: "bold",
+                  ml:2,
                   textTransform: "uppercase",
                   fontSize: { xs: "0.8rem", sm: "0.9rem" },
                   background:

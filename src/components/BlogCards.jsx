@@ -35,47 +35,58 @@ export const BlogCard = ({ blog }) => {
       whileInView="visible"
       variants={fadeInUp}
       viewport={{ once: true }}
-      style={{ width: "100%" }} 
+      style={{ width: "100%" }}
     >
       <Card
-  sx={{
-    width: { xs: "90%", sm: 300, md: 300, lg: 258 }, 
-    borderRadius: "16px",
-    boxShadow: 3,
-    transition: "0.3s",
-    "&:hover": { transform: "translateY(-6px)", boxShadow: 6 },
-    mx: { xs: "auto", sm: "auto", md: "auto", lg: 0 },
-    mb: 3,
-    ml:{ md:'80%'}
-  }}
->
-
+        sx={{
+          width: { xs: 140, sm: 200, md: 250, lg: 258 }, 
+          borderRadius: "12px",
+          boxShadow: 2,
+          transition: "0.3s",
+          "&:hover": { transform: "translateY(-4px)", boxShadow: 5 },
+          mx: { xs: 1, sm: "auto" },  
+          mb: 2,
+          flexShrink: 0, 
+        }}
+      >
         <CardActionArea onClick={() => navigate(`/getBlogs/${blog._id}`)}>
           {/* Blog Image */}
           <CardMedia
             component="img"
-            height="180"
+            sx={{
+              height: { xs: 120, sm: 160, md: 180 }, 
+            }}
             image={blog.imageUrl}
             alt={blog.title}
           />
 
-          <CardContent>
-            <Typography variant="h6" fontWeight="bold" gutterBottom noWrap>
+          <CardContent sx={{ p: 1.2 }}>
+            <Typography
+              variant="subtitle 2"
+              fontWeight="bold"
+              gutterBottom
+              noWrap
+            >
               {blog.productTitle}
             </Typography>
 
             {blog.productName && (
-              <Typography variant="body2" color="text.secondary" noWrap>
+              <Typography
+                variant="caption"
+                color="text.secondary"
+                display="block"
+                noWrap
+              >
                 {blog.productName}
               </Typography>
             )}
 
             {preview && (
               <Typography
-                variant="body2"
-                color="text.secondary"
-                sx={{ mt: 1, fontWeight:'bold' }}
-
+                variant="body7"
+                color="primary"
+                fontWeight="bold"
+                sx={{ mt: 0.5 }}
                 noWrap
               >
                 ₹{preview}

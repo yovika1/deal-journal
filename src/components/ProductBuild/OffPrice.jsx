@@ -25,7 +25,7 @@ export const OffPrice = ({ blog, fadeInUp }) => {
       variants={fadeInUp}
       viewport={{ once: true }}
     >
-      <Box sx={{ background: "#dac7b3a6", p: 2, mb: 3, borderRadius: 2 }}>
+      <Box sx={{ background: "#dedddc45", p: 2, mb: 3, borderRadius: 2 }}>
         {prices.length > 0 && (
           <Box sx={{ mb: 2, textAlign: "left" }}>
             <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
@@ -40,7 +40,7 @@ export const OffPrice = ({ blog, fadeInUp }) => {
                   sx={{
                     mb: 0.5,
                     fontWeight: i === lastPriceIndex ? "bold" : "normal",
-                    color: i === lastPriceIndex ? "#1d1b1aff" : "#a0a0a0",
+                    color: i === lastPriceIndex ? "#1d1b1aff" : "#fdfafaff",
                     textDecoration: i === lastPriceIndex ? "none" : "line-through",
                   }}
                 >
