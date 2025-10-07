@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { FeaturedOffers } from "./FeaturedProduct";
 import API_BASE from "../config";
 import axios from "axios";
+import { TestimonialsSection } from "./TestimonialsSection";
 
 export const BlogHome = () => {
   const [blogs, setBlogs] = useState([]);
@@ -96,7 +97,6 @@ export const BlogHome = () => {
         <Button onClick={() => navigate("/bloglistpage")}>View All</Button>
       </Box>
 
-      {/* ✅ Show loader while fetching */}
       {loading ? (
         <Box
           sx={{
@@ -144,15 +144,22 @@ export const BlogHome = () => {
         </Button>
       </Box>
 
-      <Grid container spacing={3}>
+       <Box
+        sx={{
+          display: "flex",
+          overflowX: "auto",
+          gap: 1.5,
+          px: 1,
+          pb: 2,
+          "&::-webkit-scrollbar": { display: "none" },
+        }}
+      >
         {blogs
           .filter((b) => b.category === "fashion")
           .map((blog) => (
-            <Grid item xs={12} sm={6} md={4} key={blog._id}>
-              <BlogCard blog={blog} />
-            </Grid>
+            <BlogCard key={blog._id} blog={blog} />
           ))}
-      </Grid>
+      </Box>
 
       <Box
         sx={{
@@ -169,7 +176,6 @@ export const BlogHome = () => {
         </Button>
       </Box>
 
-      <Grid container spacing={3}>
          <Box
       sx={{
         display: "flex",
@@ -179,16 +185,14 @@ export const BlogHome = () => {
         pb: 2,
         "&::-webkit-scrollbar": { display: "none" }, 
       }}
-    ></Box>
+    >
         {blogs
           .filter((b) => b.category === "beauty")
           .map((blog) => (
             
-            <Grid item xs={12} sm={6} md={4} key={blog._id}>
-              <BlogCard blog={blog} />
-            </Grid>
+              <BlogCard  key={blog._id} blog={blog} />
           ))}
-      </Grid>
+     </Box>
 
       <Button
         variant="contained"
@@ -225,24 +229,7 @@ export const BlogHome = () => {
       </Box> */}
 
       {/* ✅ Testimonials */}
-      <Box
-        sx={{
-          mt: 8,
-          p: 4,
-          background: "#f9f9f9",
-          borderRadius: 2,
-          textAlign: "center",
-        }}
-      >
-        <Typography variant="h6">🌟 Reader Love</Typography>
-        <Typography variant="body2" sx={{ mt: 2 }}>
-          ⭐⭐⭐⭐⭐ “The skincare guides here are life-changing. My skin routine
-          feels sorted!” – Neha
-        </Typography>
-        <Typography variant="body2" sx={{ mt: 1 }}>
-          ⭐⭐⭐⭐ “Saved me hours of research. Love the top fashion picks!” – Simran
-        </Typography>
-      </Box>
+     <TestimonialsSection/>
       
             <FeaturedOffers />
 
