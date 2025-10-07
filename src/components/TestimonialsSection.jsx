@@ -50,7 +50,7 @@ export const TestimonialsSection = ({ blogId }) => {
       });
       setComment("");
       setSuccess(true);
-      fetchComments(); 
+      fetchComments();
     } catch (err) {
       console.error("Error posting comment:", err);
     }
@@ -66,9 +66,18 @@ export const TestimonialsSection = ({ blogId }) => {
           boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
         }}
       >
-        <Typography variant="h6" gutterBottom>
+        <Typography
+          variant="h6"
+          gutterBottom
+          sx={{
+            fontSize: { xs: "1rem", sm: "1.2rem", md: "1.4rem" },
+            fontWeight: 600,
+            textAlign: { xs: "center", sm: "left" },
+          }}
+        >
           💬 Share your thoughts
         </Typography>
+
         <TextField
           fullWidth
           multiline
@@ -77,16 +86,32 @@ export const TestimonialsSection = ({ blogId }) => {
           variant="outlined"
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          sx={{ mb: 2, background: "white", borderRadius: 2 }}
+          sx={{
+            mb: 2,
+            background: "white",
+            borderRadius: 2,
+            "& .MuiInputBase-input": {
+              fontSize: { xs: "0.85rem", sm: "0.95rem", md: "1rem" },
+            },
+          }}
         />
+
         <Button
           variant="contained"
           color="secondary"
-          sx={{ borderRadius: "20px", px: 3 }}
+          sx={{
+            borderRadius: "20px",
+            px: { xs: 2, sm: 3, md: 4 },
+            py: { xs: 0.6, sm: 0.8 },
+            fontSize: { xs: "0.7rem", sm: "0.9rem", md: "1rem" },
+            display: "block",
+            mx: { xs: "auto", sm: "inherit" },
+          }}
           onClick={handleSubmit}
         >
           Post Comment
         </Button>
+
         <Snackbar
           open={success}
           autoHideDuration={2000}
@@ -96,15 +121,57 @@ export const TestimonialsSection = ({ blogId }) => {
         </Snackbar>
       </Box>
 
-      <Box
-        sx={{
-          mt: 5,
-          maxHeight: 250,
-          overflowY: "auto",
-          position: "relative",
-          "&::-webkit-scrollbar": { display: "none" },
-        }}
-      >
+      <Box sx={{ mt: 5, position: "relative" }}>
+        <Box
+          sx={{
+            maxHeight: 250,
+            overflowY: "auto",
+            pr: 1,
+            "&::-webkit-scrollbar": { display: "none" },
+          }}
+        >
+          {loading ? (
+            <Typography color="text.secondary" sx={{ mt: 2 }}>
+              Loading comments...
+            </Typography>
+          ) : comments.length === 0 ? (
+            <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
+              No comments yet — be the first to share your thoughts!
+            </Typography>
+          ) : (
+            comments.map((c, i) => (
+              <motion.div
+                key={c._id || i}
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                style={{ marginBottom: "1.2rem" }}
+              >
+                <Box
+                  sx={{
+                    background: "white",
+                    p: 2,
+                    borderRadius: 2,
+                    boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+                  }}
+                >
+                  <Typography variant="body2" sx={{ fontStyle: "italic" }}>
+                    “{c.text}”
+                  </Typography>
+                  <Typography
+                    variant="caption"
+                    color="text.secondary"
+                    sx={{ display: "block", mt: 1 }}
+                  >
+                    – {c.userName || "Glow Reader"}
+                  </Typography>
+                </Box>
+              </motion.div>
+            ))
+          )}
+        </Box>
+
         <Box
           sx={{
             position: "absolute",
@@ -116,49 +183,9 @@ export const TestimonialsSection = ({ blogId }) => {
               "linear-gradient(to top, rgba(255,248,229,1), rgba(255,248,229,0))",
             pointerEvents: "none",
             borderRadius: "0 0 12px 12px",
+            zIndex: 2,
           }}
         />
-
-        {loading ? (
-          <Typography color="text.secondary" sx={{ mt: 2 }}>
-            Loading comments...
-          </Typography>
-        ) : comments.length === 0 ? (
-          <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
-            No comments yet — be the first to share your thoughts!
-          </Typography>
-        ) : (
-          comments.map((c, i) => (
-            <motion.div
-              key={c._id || i}
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              style={{ marginBottom: "1.2rem" }}
-            >
-              <Box
-                sx={{
-                  background: "white",
-                  p: 2,
-                  borderRadius: 2,
-                  boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
-                }}
-              >
-                <Typography variant="body2" sx={{ fontStyle: "italic" }}>
-                  “{c.text}”
-                </Typography>
-                <Typography
-                  variant="caption"
-                  color="text.secondary"
-                  sx={{ display: "block", mt: 1 }}
-                >
-                  – {c.userName || "Glow Reader"}
-                </Typography>
-              </Box>
-            </motion.div>
-          ))
-        )}
       </Box>
     </Box>
   );

@@ -14,8 +14,8 @@ import { FreeSkincareGuide } from '../pages/FreeSkincareGuide';
     return (
        <Box
       sx={{
-        bgcolor: bgcolor,   // takes the prop
-        minHeight: "100vh", // full page height
+        bgcolor: bgcolor,   
+        minHeight: "100vh",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",

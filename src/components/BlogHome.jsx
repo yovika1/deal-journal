@@ -24,36 +24,37 @@ export const BlogHome = () => {
 
   const navigate = useNavigate();
 
- useEffect(() => {
-  (async () => {
-    try {
-      const res = await axios.get(`${API_BASE}/getBlogs`);
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await axios.get(`${API_BASE}/getBlogs`);
 
-      const mapped = (res.data.blogs || []).map((item) => ({
-        _id: item._id,
-        productName: item.productName,
-        productTitle: item.productTitle,
-        imageUrl: item.imageUrl,
-        productUrl: item.productUrl,
-        category: item.category || "general",
-        details: item.details || [],
-      }));
+        const mapped = (res.data.blogs || []).map((item) => ({
+          _id: item._id,
+          productName: item.productName,
+          productTitle: item.productTitle,
+          imageUrl: item.imageUrl,
+          productUrl: item.productUrl,
+          category: item.category || "general",
+          details: item.details || [],
+        }));
 
-      setBlogs(mapped);
-    } catch (e) {
-      console.error("Error fetching blogs:", e);
-    }finally {
+        setBlogs(mapped);
+      } catch (e) {
+        console.error("Error fetching blogs:", e);
+      } finally {
         setLoading(false);
-    }
-  })();
-}, []);
+      }
+    })();
+  }, []);
 
-  
   return (
     <Container maxWidth="lg" sx={{ mt: 4 }}>
       {/* ✅ SEO Meta Tags */}
       <Helmet>
-        <title variant="h3">Glow with Us | Beauty, Fashion & Lifestyle Blog</title>
+        <title variant="h3">
+          Glow with Us | Beauty, Fashion & Lifestyle Blog
+        </title>
         <meta
           name="description"
           content="Glow with Us is your go-to blog for beauty tips, skincare routines, and fashion trends. Read expert guides and shop curated product deals."
@@ -69,16 +70,16 @@ export const BlogHome = () => {
           Your trusted <strong>beauty & fashion blog</strong> with guides, tips,
           and product reviews that really work.
         </Typography>
-        
-       <Button
-      variant="contained"
-      color="secondary"
-      size="large"
-      onClick={() => navigate("/free-skincare")}
-      sx={{ borderRadius: 20, px: 4 }}
-    >
-      📩 Get My Free Guide
-    </Button>
+
+        <Button
+          variant="contained"
+          color="secondary"
+          size="large"
+          onClick={() => navigate("/free-skincare")}
+          sx={{ borderRadius: 20, px: 4 }}
+        >
+          📩 Get My Free Guide
+        </Button>
       </Box>
 
       <Divider sx={{ my: 5 }} />
@@ -87,7 +88,7 @@ export const BlogHome = () => {
       <Box
         sx={{
           display: "flex",
-          overflow:'hidden',
+          overflow: "hidden",
           justifyContent: "space-between",
           alignItems: "center",
           mb: 3,
@@ -136,15 +137,33 @@ export const BlogHome = () => {
           alignItems: "center",
           mt: 6,
           mb: 3,
+          rowGap: 1,
         }}
       >
-        <Typography variant="h5">👗 Fashion Trends</Typography>
-        <Button onClick={() => navigate("/bloglistpage?category=fashion")}>
+        <Typography
+          variant="h5"
+          sx={{
+            fontSize: { xs: "1rem", sm: "1.4rem", md: "1.6rem" },
+            fontWeight: 600,
+          }}
+        >
+          👗 Fashion Trends
+        </Typography>
+        <Button
+          onClick={() => navigate("/bloglistpage?category=fashion")}
+          sx={{
+            fontSize: { xs: "0.70rem", sm: "0.85rem", md: "1rem" },
+            px: { xs: 0.1, sm: 2.5, md: 3 },
+            py: { xs: 0.5, sm: 0.7 },
+            borderRadius: 20,
+            textTransform: "none",
+          }}
+        >
           Explore Fashion
         </Button>
       </Box>
 
-       <Box
+      <Box
         sx={{
           display: "flex",
           overflowX: "auto",
@@ -168,31 +187,49 @@ export const BlogHome = () => {
           alignItems: "center",
           mt: 6,
           mb: 3,
+          flexWrap: "wrap",
+          rowGap: 1,
         }}
       >
-        <Typography variant="h5">💄 Beauty & Skincare</Typography>
-        <Button onClick={() => navigate("/bloglistpage?category=beauty")}>
+        <Typography
+          variant="h5"
+          sx={{
+            fontSize: { xs: "1rem", sm: "1.4rem", md: "1.6rem" },
+            fontWeight: 600,
+          }}
+        >
+          💄 Beauty & Skincare
+        </Typography>
+        <Button
+          onClick={() => navigate("/bloglistpage?category=beauty")}
+          sx={{
+            fontSize: { xs: "0.70rem", sm: "0.85rem", md: "1rem" },
+            px: { xs: 0.1, sm: 2.5, md: 3 },
+            py: { xs: 0.5, sm: 0.7 },
+            borderRadius: 20,
+            textTransform: "none",
+          }}
+        >
           Explore Beauty
         </Button>
       </Box>
 
-         <Box
-      sx={{
-        display: "flex",
-        overflowX: "auto",
-        gap: 1.5,
-        px: 1,
-        pb: 2,
-        "&::-webkit-scrollbar": { display: "none" }, 
-      }}
-    >
+      <Box
+        sx={{
+          display: "flex",
+          overflowX: "auto",
+          gap: 1.5,
+          px: 1,
+          pb: 2,
+          "&::-webkit-scrollbar": { display: "none" },
+        }}
+      >
         {blogs
           .filter((b) => b.category === "beauty")
           .map((blog) => (
-            
-              <BlogCard  key={blog._id} blog={blog} />
+            <BlogCard key={blog._id} blog={blog} />
           ))}
-     </Box>
+      </Box>
 
       <Button
         variant="contained"
@@ -200,10 +237,10 @@ export const BlogHome = () => {
         onClick={() => navigate("/explore-offers")}
         sx={{
           position: "fixed",
-        bottom: { xs: 12, sm: 16, md: 20 },   
+          bottom: { xs: 12, sm: 16, md: 20 },
           right: 20,
           borderRadius: "30px",
-        px: { xs: 2, sm: 3, md: 4 },         
+          px: { xs: 2, sm: 3, md: 4 },
           py: 1.2,
           fontSize: { xs: "0.50rem", sm: "0.85rem", md: "1rem" },
 
@@ -229,10 +266,9 @@ export const BlogHome = () => {
       </Box> */}
 
       {/* ✅ Testimonials */}
-     <TestimonialsSection/>
-      
-            <FeaturedOffers />
+      <TestimonialsSection />
 
+      <FeaturedOffers />
 
       {/* ✅ Sticky Email Lead Magnet */}
       <EmailLeadMagnet open={leadOpen} onClose={() => setLeadOpen(false)} />
