@@ -23,7 +23,7 @@ export default function StoreMessage({ url }) {
 
     return (
       <Typography color="primary" fontWeight="bold" sx={{
-    fontSize: { xs: 10, sm: 12, md: 14, lg: 16 }, 
+    fontSize: { xs: 8, sm: 12, md: 14, lg: 16 }, 
   }}>
         Available now on{" "}
         <a
