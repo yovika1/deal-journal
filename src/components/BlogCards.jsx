@@ -35,16 +35,17 @@ export const BlogCard = ({ blog }) => {
       whileInView="visible"
       variants={fadeInUp}
       viewport={{ once: true }}
-      style={{ width: "100%" }}
+      style={{ width: "100%"}}
     >
       <Card
         sx={{
-          width: { xs: 140, sm: 200, md: 250, lg: 258 }, 
+          width: { xs: 124, sm: 200, md: 250, lg: 258 }, 
+        
           borderRadius: "12px",
           boxShadow: 2,
           transition: "0.3s",
           "&:hover": { transform: "translateY(-4px)", boxShadow: 5 },
-          mx: { xs: 1, sm: "auto" },  
+          mx: { sm: "auto" },  
           mb: 2,
           flexShrink: 0, 
         }}

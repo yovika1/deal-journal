@@ -95,16 +95,20 @@ export const BlogHome = () => {
         }}
       >
         <Typography variant="h5">📝 Latest Blogs</Typography>
-        <Button onClick={() => navigate("/bloglistpage")}>View All</Button>
+        <Button onClick={() => navigate("/bloglistpage")}
+          sx={{
+            fontSize: { xs: "0.70rem", sm: "0.85rem", md: "1rem" },
+          }}
+          >View All</Button>
       </Box>
 
       {loading ? (
         <Box
           sx={{
+            
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            minHeight: "40vh",
           }}
         >
           <CircularProgress color="secondary" />
@@ -144,7 +148,6 @@ export const BlogHome = () => {
           variant="h5"
           sx={{
             fontSize: { xs: "1rem", sm: "1.4rem", md: "1.6rem" },
-            fontWeight: 600,
           }}
         >
           👗 Fashion Trends
@@ -153,7 +156,7 @@ export const BlogHome = () => {
           onClick={() => navigate("/bloglistpage?category=fashion")}
           sx={{
             fontSize: { xs: "0.70rem", sm: "0.85rem", md: "1rem" },
-            px: { xs: 0.1, sm: 2.5, md: 3 },
+            px: { xs: 0.1, sm: 2.5, md: 0 },
             py: { xs: 0.5, sm: 0.7 },
             borderRadius: 20,
             textTransform: "none",
@@ -195,7 +198,6 @@ export const BlogHome = () => {
           variant="h5"
           sx={{
             fontSize: { xs: "1rem", sm: "1.4rem", md: "1.6rem" },
-            fontWeight: 600,
           }}
         >
           💄 Beauty & Skincare
@@ -204,7 +206,7 @@ export const BlogHome = () => {
           onClick={() => navigate("/bloglistpage?category=beauty")}
           sx={{
             fontSize: { xs: "0.70rem", sm: "0.85rem", md: "1rem" },
-            px: { xs: 0.1, sm: 2.5, md: 3 },
+            px: { xs: 0.1, sm: 2.5, md: 0 },
             py: { xs: 0.5, sm: 0.7 },
             borderRadius: 20,
             textTransform: "none",

@@ -11,19 +11,18 @@ export default function StoreMessage({ url }) {
   }
 
   try {
-    // add protocol if missing
     const fullUrl = url.startsWith("http") ? url : `https://${url}`;
     const hostname = new URL(fullUrl).hostname.toLowerCase();
 
-    let storeName = "Our Partner Store";
+    let storeName = "Main Store";
     if (hostname.includes("flipkart")) storeName = "Flipkart";
     else if (hostname.includes("amazon")) storeName = "Amazon";
     else if (hostname.includes("myntra")) storeName = "Myntra";
-    else if (hostname.includes("nykaa")) storeName = "Nykaa";
+    else if (hostname.includes("meesho")) storeName = "meesho";
 
     return (
       <Typography color="primary" fontWeight="bold" sx={{
-    fontSize: { xs: 8, sm: 12, md: 14, lg: 16 }, 
+    fontSize: { xs: 9, sm: 12, md: 14, lg: 16 }, 
   }}>
         Available now on{" "}
         <a

@@ -62,8 +62,8 @@ try {
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={20}
           navigation={{
-            nextEl: ".custom-next",   // 🔥 CHANGED (custom nav)
-              prevEl: ".custom-prev",   // 🔥 C
+            nextEl: ".custom-next",   
+              prevEl: ".custom-prev",  
           }}
           pagination={{
              el: ".custom-pagination",

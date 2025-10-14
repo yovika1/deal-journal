@@ -36,7 +36,7 @@ export const FreeGuideCard = ({ guide, index }) => {
                 objectFit: "cover",
                 display: "block",
                 mx: "auto",
-                boxShadow: "0 6px 15px rgba(0,0,0,0.1)",
+                boxShadow: "0 6px 15px rgba(0, 0, 0, 0.14)",
               }}
               whileHover={{ scale: 1.03 }}
               transition={{ type: "spring", stiffness: 200 }}
@@ -115,7 +115,8 @@ export const FreeGuideCard = ({ guide, index }) => {
       <Divider
         component={motion.div}
         initial={{ opacity: 0 }}
-        whileInView={{ opacity: 0.4 }}
+        
+        whileInView={{ opacity: 1}}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
         sx={{ my: { xs: 2, md: 4 } }}

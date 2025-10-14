@@ -53,9 +53,11 @@ export const FreeSkincareGuide = () => {
             fontWeight: "bold",
             textAlign: "center",
             px: 2,
+            ml:2,
+
           }}
         >
-          🌸 Hacks for Glowing Skin ✨
+           Hacks for <Box> Glowing Skin ✨</Box>
         </Typography>
       </Box>
 
@@ -85,7 +87,7 @@ export const FreeSkincareGuide = () => {
           p: 4,
           bgcolor: "#d0bea2c2",
           borderRadius: 3,
-          boxShadow: "0 6px 15px rgba(0,0,0,0.08)",
+          boxShadow: "0 6px 15px rgba(0, 0, 0, 0.33)",
         }}
       >
         <Typography variant="h5" gutterBottom>

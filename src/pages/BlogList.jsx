@@ -80,13 +80,22 @@ export const BlogList = () => {
       </Box>
 
       {/* Blog Grid */}
-      <Grid container spacing={3}>
+      <Grid container spacing={2} 
+      sx={{
+            display:"flex",
+            justifyContent:'center',
+            alignItems:'center',
+            // ml:{md:100}
+          }}
+      >
         {blogs
           .filter((b) => category === "all" || b.category === category)
           .map((blog) => (
-            <Grid item xs={12} sm={6} md={4} key={blog._id}>
-              <BlogCard blog={blog} />
-            </Grid>
+          <Box item   key={blog._id}>
+
+  <BlogCard blog={blog} />
+</Box>
+
           ))}
       </Grid>
 

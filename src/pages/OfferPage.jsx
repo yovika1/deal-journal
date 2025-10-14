@@ -68,7 +68,10 @@ export const OffersPage = () => {
         spacing={2}
         alignItems="center"
         justifyContent="center"
-        sx={{ mb: 4 }}
+        sx={{ mb: 4 ,
+             px: { xs: 1, sm: 4, md: 6 }, 
+
+        }}
       >
         <ToggleButtonGroup
     value={cat}
@@ -77,6 +80,7 @@ export const OffersPage = () => {
     sx={{
       backgroundColor: "rgba(255,255,255,0.9)",
       borderRadius: 3,
+      fontSize:{xs:10},
       boxShadow: 3,
       "& .MuiToggleButton-root": {
         px: 3,
@@ -87,10 +91,10 @@ export const OffersPage = () => {
         transition: "all 0.3s",
       },
       "& .Mui-selected": {
-        backgroundColor: "#ff40ffff",
+        backgroundColor: "#f3a0e5ff",
         color: "#272323ff",
         "&:hover": {
-          backgroundColor: "#ff40ffff",
+          backgroundColor: "#d420ecff",
         },
       },
       "& .MuiToggleButton-root:hover": {
@@ -128,7 +132,7 @@ export const OffersPage = () => {
               <Card
                 sx={{
                   borderRadius: 4,
-                  width:300,
+                  width:274,
                   height: 480,
                   display: "flex",
                   flexDirection: "column",
