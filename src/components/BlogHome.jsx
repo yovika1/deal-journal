@@ -34,9 +34,10 @@ export const BlogHome = () => {
           productName: item.productName,
           productTitle: item.productTitle,
           imageUrl: item.imageUrl,
-          productUrl: item.productUrl,
+          productUrl: item.affiliateUrl,
           category: item.category || "general",
           details: item.details || [],
+
         }));
 
         setBlogs(mapped);
@@ -61,7 +62,6 @@ export const BlogHome = () => {
         />
       </Helmet>
 
-      {/* ✅ Hero Section */}
       <Box sx={{ textAlign: "center", mb: 6 }}>
         <Typography variant="h3" sx={{ mb: 2, fontWeight: "bold" }}>
           ✨ Glow With Us
@@ -82,7 +82,7 @@ export const BlogHome = () => {
         </Button>
       </Box>
 
-      <Divider sx={{ my: 5 }} />
+      {/* <Divider sx={{ my: 5 }} /> */}
 
       {/* ✅ Latest Blogs Section */}
       <Box
@@ -95,7 +95,7 @@ export const BlogHome = () => {
         }}
       >
         <Typography variant="h5">📝 Latest Blogs</Typography>
-        <Button onClick={() => navigate("/bloglistpage")}
+        <Button onClick={() => navigate("/bloglistpage?category=general")}
           sx={{
             fontSize: { xs: "0.70rem", sm: "0.85rem", md: "1rem" },
           }}
@@ -113,7 +113,7 @@ export const BlogHome = () => {
         >
           <CircularProgress color="secondary" />
         </Box>
-      ) : blogs.length > 0 ? (
+) : blogs.filter((b) => b.category === "general").length > 0 ? (
         <Box
           sx={{
             display: "flex",
@@ -124,11 +124,14 @@ export const BlogHome = () => {
             "&::-webkit-scrollbar": { display: "none" },
           }}
         >
-          {blogs.map((blog) => (
+          {blogs
+      .filter((b) => b.category === "general")
+          .map((blog) => (
             <BlogCard key={blog._id} blog={blog} />
           ))}
         </Box>
       ) : (
+        
         <Typography variant="body2" color="text.secondary">
           No blogs available yet.
         </Typography>

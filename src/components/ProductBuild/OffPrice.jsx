@@ -40,7 +40,7 @@ export const OffPrice = ({ blog, fadeInUp }) => {
                   sx={{
                     mb: 0.5,
                     fontWeight: i === lastPriceIndex ? "bold" : "normal",
-                    color: i === lastPriceIndex ? "#1d1b1aff" : "#fdfafaff",
+                    color: i === lastPriceIndex ? "#1d1b1aff" : "#f34242ff",
                     textDecoration: i === lastPriceIndex ? "none" : "line-through",
                   }}
                 >
@@ -59,7 +59,8 @@ export const OffPrice = ({ blog, fadeInUp }) => {
         {otherDetails.map((d, i) =>
           d.name ? (
             <Typography key={i} variant="body1" sx={{ mb: 1 }}>
-              ✅ {d.name}
+              ✅<strong> {d.name}</strong>{''}
+              {d.value || ""}
             </Typography>
           ) : null
         )}

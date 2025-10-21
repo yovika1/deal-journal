@@ -18,8 +18,8 @@ import "swiper/css/pagination";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material"; // 🔥 CHANGED
 
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import StoreMessage from "../Data/StoreMessage";
 import API_BASE from "../config";
+import { StoreMessage } from "../Data/StoreMessage";
 
 export const FeaturedOffers = () => {
   const [offers, setOffers] = useState([]);

@@ -1,24 +1,29 @@
 // src/components/StoreMessage.jsx
 import { Typography } from "@mui/material";
 
-export default function StoreMessage({ url }) {
-  if (!url) {
+export const StoreMessage = ({ url, hasOffer = false}) => {
+    console.log("🧭 StoreMessage received URL:", url);
+
+  if (!url || typeof url !== "string" || url.trim() === "") {
     return (
-      <Typography color="primary" fontWeight="bold">
+      <Typography color="primary" fontWeight="bold"
+      sx={{fontSize: { xs: 9, sm: 12, md: 14, lg: 16 }, 
+  }}
+      >
         Exclusive Partner Deal – Limited Time Offer!
       </Typography>
     );
   }
 
   try {
-    const fullUrl = url.startsWith("http") ? url : `https://${url}`;
-    const hostname = new URL(fullUrl).hostname.toLowerCase();
-
+    const fullUrl = (url.startsWith("http") ? url : `https://${url}`).trim();
+    const lowerUrl = fullUrl.toLowerCase();
+    
     let storeName = "Main Store";
-    if (hostname.includes("flipkart")) storeName = "Flipkart";
-    else if (hostname.includes("amazon")) storeName = "Amazon";
-    else if (hostname.includes("myntra")) storeName = "Myntra";
-    else if (hostname.includes("meesho")) storeName = "meesho";
+    if (lowerUrl.includes("fktr.in")) storeName = "flipkart";
+    else if (lowerUrl.includes("amazon")) storeName = "Amazon";
+    else if (lowerUrl.includes("myntra")) storeName = "Myntra";
+    else if (lowerUrl.includes("meesho")) storeName = "meesho";
 
     return (
       <Typography color="primary" fontWeight="bold" sx={{
@@ -37,14 +42,14 @@ export default function StoreMessage({ url }) {
         >
           {storeName}
         </a>{" "}
-        – Limited Time Deal!
-      </Typography>
+{       hasOffer &&' – Limited Time Deal!'}    
+  </Typography>
     );
   } catch (err) {
     console.error("Invalid product URL:", url, err);
     return (
       <Typography color="primary" fontWeight="bold">
-        Exclusive Partner Deal – Limited Time Offer!
+{        hasOffer && '– Exclusive Deal-Limited Time Offer!'}
       </Typography>
     );
   }

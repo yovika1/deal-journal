@@ -66,7 +66,7 @@ export const BlogDetail = () => {
             <img
               src={blog.imageUrl}
               alt={blog.title || "Blog Image"}
-              style={{ width: "100%", maxHeight: "495px", objectFit: "cover" }}
+              style={{ width: "100%", maxHeight: "90vh"}}
             />
             <Box
               sx={{
@@ -79,10 +79,10 @@ export const BlogDetail = () => {
                 p: 3,
               }}
             >
-              <Typography variant="h4" fontWeight="bold">
+              <Typography variant="h5" fontWeight="bold">
                 {blog.productName || "No Product Name"}
               </Typography>
-              <Typography variant="subtitle1">
+              <Typography variant="subtitle2">
                 {blog.productTitle || "No Title"}
               </Typography>
             </Box>

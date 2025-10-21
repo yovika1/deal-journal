@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import StoreMessage from "../Data/StoreMessage";
+import { StoreMessage } from "../Data/StoreMessage";
 
 export const BlogCard = ({ blog }) => {
   const navigate = useNavigate();
@@ -22,6 +22,13 @@ export const BlogCard = ({ blog }) => {
       preview = firstDetail.value || firstDetail.name || "";
     }
   }
+const hasOffer = blog.details.some(
+  (d) =>
+    d.name?.toLowerCase().includes("offer") ||
+    d.value?.toLowerCase().includes("offer") ||
+    d.value?.includes("%")
+);
+
 
   // Motion variants
   const fadeInUp = {
@@ -44,10 +51,11 @@ export const BlogCard = ({ blog }) => {
           borderRadius: "12px",
           boxShadow: 2,
           transition: "0.3s",
-          "&:hover": { transform: "translateY(-4px)", boxShadow: 5 },
+          "&:hover": { transform: "translateY(-4px) translateX(none)" , boxShadow: 5 },
           mx: { sm: "auto" },  
           mb: 2,
           flexShrink: 0, 
+           cursor: "pointer",
         }}
       >
         <CardActionArea onClick={() => navigate(`/getBlogs/${blog._id}`)}>
@@ -55,7 +63,7 @@ export const BlogCard = ({ blog }) => {
           <CardMedia
             component="img"
             sx={{
-              height: { xs: 120, sm: 160, md: 180 }, 
+              height: { xs: 120, sm: 160, md: 250 }, 
             }}
             image={blog.imageUrl}
             alt={blog.title}
@@ -94,7 +102,7 @@ export const BlogCard = ({ blog }) => {
               </Typography>
             )}
 
-            <StoreMessage url={blog.productUrl || blog.affiliateUrl} />
+          { blog?.productUrl &&  <StoreMessage url={blog.productUrl }  hasOffer={hasOffer}/>}
           </CardContent>
         </CardActionArea>
       </Card>
