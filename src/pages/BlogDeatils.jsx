@@ -52,21 +52,22 @@ export const BlogDetail = () => {
 
   return (
     <Container maxWidth="md" sx={{ mt: 4, mb: 6 }}>
-      {blog.imageUrl && (
+      {blog.product?.imageUrl && (
         <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
           <Box
             sx={{
               position: "relative",
               mb: 4,
+               width: "70%",
               borderRadius: "16px",
               overflow: "hidden",
               boxShadow: "0 8px 20px rgba(0,0,0,0.15)",
             }}
           >
             <img
-              src={blog.imageUrl}
-              alt={blog.title || "Blog Image"}
-              style={{ width: "100%", maxHeight: "90vh"}}
+              src={blog.product?.imageUrl}
+              alt={blog.product?.title || "Blog Image"}
+              style={{ width: "100%", maxHeight: "79vh"}}
             />
             <Box
               sx={{
@@ -118,7 +119,7 @@ export const BlogDetail = () => {
         <Box sx={{ textAlign: "center", mb: 4 }}>
           <Button
             variant="contained"
-            onClick={() => window.open(blog.affiliateUrl, "_blank")}
+            onClick={() => window.open(blog.product?.affiliateUrl, "_blank")}
             sx={{
               px: 4,
               py: 1.5,

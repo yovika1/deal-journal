@@ -31,13 +31,12 @@ export const BlogHome = () => {
 
         const mapped = (res.data.blogs || []).map((item) => ({
           _id: item._id,
-          productName: item.productName,
+          productName: item.product?.productName || "",
           productTitle: item.productTitle,
-          imageUrl: item.imageUrl,
-          productUrl: item.affiliateUrl,
+          imageUrl: item.product?.imageUrl || "",
+          productUrl: item.product?.affiliateUrl || "",
           category: item.category || "general",
           details: item.details || [],
-
         }));
 
         setBlogs(mapped);
@@ -95,17 +94,19 @@ export const BlogHome = () => {
         }}
       >
         <Typography variant="h5">📝 Latest Blogs</Typography>
-        <Button onClick={() => navigate("/bloglistpage?category=general")}
+        <Button
+          onClick={() => navigate("/bloglistpage?category=general")}
           sx={{
             fontSize: { xs: "0.70rem", sm: "0.85rem", md: "1rem" },
           }}
-          >View All</Button>
+        >
+          View All
+        </Button>
       </Box>
 
       {loading ? (
         <Box
           sx={{
-            
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -113,7 +114,7 @@ export const BlogHome = () => {
         >
           <CircularProgress color="secondary" />
         </Box>
-) : blogs.filter((b) => b.category === "general").length > 0 ? (
+      ) : blogs.filter((b) => b.category === "general").length > 0 ? (
         <Box
           sx={{
             display: "flex",
@@ -125,13 +126,12 @@ export const BlogHome = () => {
           }}
         >
           {blogs
-      .filter((b) => b.category === "general")
-          .map((blog) => (
-            <BlogCard key={blog._id} blog={blog} />
-          ))}
+            .filter((b) => b.category === "general")
+            .map((blog) => (
+              <BlogCard key={blog._id} blog={blog} />
+            ))}
         </Box>
       ) : (
-        
         <Typography variant="body2" color="text.secondary">
           No blogs available yet.
         </Typography>

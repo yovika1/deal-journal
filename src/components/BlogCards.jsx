@@ -13,15 +13,11 @@ import { StoreMessage } from "../Data/StoreMessage";
 export const BlogCard = ({ blog }) => {
   const navigate = useNavigate();
 
-  let preview = "";
-  if (blog.details && blog.details.length > 0) {
-    const firstDetail = blog.details[0];
-    if (typeof firstDetail === "string") {
-      preview = firstDetail;
-    } else if (typeof firstDetail === "object") {
-      preview = firstDetail.value || firstDetail.name || "";
-    }
-  }
+   const product = blog.product || {};
+  const price = product.currentPrice
+    ? `₹${product.currentPrice}`
+    : "Fetching price...";
+
 const hasOffer = blog.details.some(
   (d) =>
     d.name?.toLowerCase().includes("offer") ||
@@ -65,7 +61,7 @@ const hasOffer = blog.details.some(
             sx={{
               height: { xs: 120, sm: 160, md: 250 }, 
             }}
-            image={blog.imageUrl}
+            image={blog.product?.imageUrl || blog.imageUrl}
             alt={blog.title}
           />
 
@@ -79,28 +75,26 @@ const hasOffer = blog.details.some(
               {blog.productTitle}
             </Typography>
 
-            {blog.productName && (
+            {blog.product?.productName && (
               <Typography
                 variant="caption"
                 color="text.secondary"
                 display="block"
                 noWrap
               >
-                {blog.productName}
+                {blog.product.productName}
               </Typography>
             )}
 
-            {preview && (
-              <Typography
-                variant="body7"
-                color="primary"
-                fontWeight="bold"
-                sx={{ mt: 0.5 }}
-                noWrap
-              >
-                ₹{preview}
-              </Typography>
-            )}
+               <Typography
+              variant="body1"
+              color="primary"
+              fontWeight="bold"
+              sx={{ mt: 0.5 }}
+              noWrap
+            >
+              {price}
+            </Typography>
 
           { blog?.productUrl &&  <StoreMessage url={blog.productUrl }  hasOffer={hasOffer}/>}
           </CardContent>
