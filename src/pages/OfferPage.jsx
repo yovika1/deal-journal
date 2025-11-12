@@ -23,7 +23,7 @@ import API_BASE from "../config";
 export const OffersPage = () => {
   const [offers, setOffers] = useState([]);
   const [cat, setCat] = useState("all");
-  const [q, setQ] = useState("");
+  const [q] = useState("");
 
   useEffect(() => {
     (async () => {

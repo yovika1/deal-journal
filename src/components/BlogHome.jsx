@@ -4,8 +4,6 @@ import {
   Typography,
   Button,
   Box,
-  Divider,
-  Grid,
   CircularProgress,
 } from "@mui/material";
 import { Helmet } from "react-helmet-async";

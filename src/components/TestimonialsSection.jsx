@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   Box,
   Typography,
@@ -22,7 +22,7 @@ export const TestimonialsSection = ({ blogId }) => {
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const fetchComments = async () => {
+  const fetchComments = useCallback(async () => {
     try {
       setLoading(true);
       const res = await axios.get(`${API_BASE}/getcomments`, {
@@ -34,11 +34,11 @@ export const TestimonialsSection = ({ blogId }) => {
       console.error("Error fetching comments:", err);
       setLoading(false);
     }
-  };
+  } ,[blogId]);;
 
   useEffect(() => {
     fetchComments();
-  }, [blogId]);
+  }, [fetchComments]);
 
   const handleSubmit = async () => {
     if (!comment.trim()) return;
