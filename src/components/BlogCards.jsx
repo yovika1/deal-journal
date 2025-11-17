@@ -18,7 +18,7 @@ export const BlogCard = ({ blog }) => {
     ? `₹${product.currentPrice}`
     : "Fetching price...";
 
-const hasOffer = blog.details.some(
+const hasOffer = (blog.details || []).some(
   (d) =>
     d.name?.toLowerCase().includes("offer") ||
     d.value?.toLowerCase().includes("offer") ||

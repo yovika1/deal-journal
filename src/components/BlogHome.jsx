@@ -14,11 +14,13 @@ import { FeaturedOffers } from "./FeaturedProduct";
 import API_BASE from "../config";
 import axios from "axios";
 import { TestimonialsSection } from "./TestimonialsSection";
+// import { RelatedBlogs } from "./RelatedBlogs";
 
 export const BlogHome = () => {
   const [blogs, setBlogs] = useState([]);
   const [leadOpen, setLeadOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [recent, setRecent] = useState([]);
 
   const navigate = useNavigate();
 
@@ -29,12 +31,17 @@ export const BlogHome = () => {
 
         const mapped = (res.data.blogs || []).map((item) => ({
           _id: item._id,
-          productName: item.product?.productName || "",
           productTitle: item.productTitle,
-          imageUrl: item.product?.imageUrl || "",
-          productUrl: item.product?.affiliateUrl || "",
           category: item.category || "general",
+          productUrl: item.product?.affiliateUrl || "",
           details: item.details || [],
+
+          product: {
+            imageUrl: item.product?.imageUrl || "",
+            productUrl: item.product?.affiliateUrl || "",
+            currentPrice: item.product?.currentPrice || null,
+            originalPrice: item.product?.originalPrice || null,
+          },
         }));
 
         setBlogs(mapped);
@@ -44,6 +51,11 @@ export const BlogHome = () => {
         setLoading(false);
       }
     })();
+  }, []);
+
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem("recentBlogs")) || [];
+    setRecent(items);
   }, []);
 
   return (
@@ -58,7 +70,29 @@ export const BlogHome = () => {
           content="Glow with Us is your go-to blog for beauty tips, skincare routines, and fashion trends. Read expert guides and shop curated product deals."
         />
       </Helmet>
-
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          width: "100%",
+          py: 2,
+        }}
+      >
+        {/* LEFT SIDE BRAND NAME */}
+        <Typography
+          variant="h5"
+          sx={{
+            fontWeight: 700,
+            background: "linear-gradient(90deg, #ff6ec4, #7873f5)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            letterSpacing: "1px",
+          }}
+        >
+          Rangyblux
+        </Typography>
+      </Box>
       <Box sx={{ textAlign: "center", mb: 6 }}>
         <Typography variant="h3" sx={{ mb: 2, fontWeight: "bold" }}>
           ✨ Glow With Us
@@ -234,6 +268,37 @@ export const BlogHome = () => {
           ))}
       </Box>
 
+      {recent.length > 0 && (
+        <>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              mt: 6,
+              mb: 3,
+            }}
+          >
+            <Typography variant="h5">👀 Recently Viewed</Typography>
+          </Box>
+
+          <Box
+            sx={{
+              display: "flex",
+              overflowX: "auto",
+              gap: 1.5,
+              px: 1,
+              pb: 2,
+              "&::-webkit-scrollbar": { display: "none" },
+            }}
+          >
+            {recent.map((blog) => (
+              <BlogCard key={blog._id} blog={blog} />
+            ))}
+          </Box>
+        </>
+      )}
+
       <Button
         variant="contained"
         color="secondary"
@@ -272,6 +337,7 @@ export const BlogHome = () => {
       <TestimonialsSection />
 
       <FeaturedOffers />
+      {/* <RelatedBlogs/> */}
 
       {/* ✅ Sticky Email Lead Magnet */}
       <EmailLeadMagnet open={leadOpen} onClose={() => setLeadOpen(false)} />

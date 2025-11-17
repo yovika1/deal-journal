@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Container,
-  Typography,
-  Divider,
-  Button,
-  Box,
-
-} from "@mui/material";
+import { Container, Typography, Divider, Button, Box } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { RelatedBlogs } from "../components/RelatedBlogs";
@@ -27,17 +20,39 @@ export const BlogDetail = () => {
   const shareUrl = window.location.href;
   const navigate = useNavigate();
 
- 
   useEffect(() => {
     (async () => {
       try {
         const res = await axios.get(`${API_BASE}/getBlogs/${id}`);
-        setBlog(res.data.blog|| []);
+        setBlog(res.data.blog || []);
       } catch (e) {
         console.error(e);
       }
     })();
   }, [id]);
+
+  useEffect(() => {
+    if (!blog?._id) return;
+
+    const viewed = JSON.parse(localStorage.getItem("recentBlogs")) || [];
+
+    const newItem = {
+      _id: blog._id,
+      productTitle: blog.productTitle,
+      product: {
+        imageUrl: blog.product?.imageUrl || "",
+        currentPrice: blog.product?.currentPrice || "",
+      },
+      category: blog.category || "general",
+    };
+
+    const filtered = viewed.filter((item) => item._id !== blog._id);
+    filtered.unshift(newItem);
+
+    const limited = filtered.slice(0, 10);
+
+    localStorage.setItem("recentBlogs", JSON.stringify(limited));
+  }, [blog]);
 
   if (!blog) return <Typography sx={{ m: 4 }}>Loading...</Typography>;
 
@@ -58,7 +73,7 @@ export const BlogDetail = () => {
             sx={{
               position: "relative",
               mb: 4,
-               width: "70%",
+              width: "70%",
               borderRadius: "16px",
               overflow: "hidden",
               boxShadow: "0 8px 20px rgba(0,0,0,0.15)",
@@ -67,7 +82,7 @@ export const BlogDetail = () => {
             <img
               src={blog.product?.imageUrl}
               alt={blog.product?.title || "Blog Image"}
-              style={{ width: "100%", maxHeight: "79vh"}}
+              style={{ width: "100%", maxHeight: "79vh" }}
             />
             <Box
               sx={{
@@ -80,10 +95,22 @@ export const BlogDetail = () => {
                 p: 3,
               }}
             >
-              <Typography variant="h5" fontWeight="bold">
-                {blog.productName || "No Product Name"}
+              <Typography
+                variant="h3"
+                fontSize={14}
+                sx={{
+                  fontSize: {
+                    xs: "0.75rem",
+                    sm: "0.85rem",
+                    md: "1rem",
+                    lg: "1.1rem",
+                  },
+                  fontWeight: 600,
+                }}
+              >
+                {blog.product?.productName || "No Product Name"}
               </Typography>
-              <Typography variant="subtitle2">
+              <Typography variant="subtitle5" fontWeight="bold" fontSize={19}>
                 {blog.productTitle || "No Title"}
               </Typography>
             </Box>
@@ -113,7 +140,6 @@ export const BlogDetail = () => {
       </motion.div>
 
       <OffPrice blog={blog} fadeInUp={fadeInUp} />
-      
 
       <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
         <Box sx={{ textAlign: "center", mb: 4 }}>
@@ -176,7 +202,7 @@ export const BlogDetail = () => {
       </motion.div> */}
 
       {/* 6. Social Proof (Testimonials) */}
-     <TestimonialsSection/>
+      <TestimonialsSection />
 
       <motion.div initial="hidden" whileInView="visible" variants={fadeIn}>
         <Box
@@ -209,8 +235,7 @@ export const BlogDetail = () => {
 
       <Divider sx={{ my: 4 }} />
 
-     <ShareButtons shareUrl={shareUrl} />
-
+      <ShareButtons shareUrl={shareUrl} />
 
       <motion.div>
         <Box sx={{ display: "flex", gap: 2, mt: 3, flexWrap: "wrap" }}>
@@ -224,23 +249,21 @@ export const BlogDetail = () => {
           >
             🛍️ Explore Top Offers
           </Button>
-          <Button variant="text"   
-              onClick={() => navigate("/free-skincare")}
->
+          <Button variant="text" onClick={() => navigate("/free-skincare")}>
             Get Free Guide
           </Button>
         </Box>
         <Divider sx={{ my: 4 }} />
       </motion.div>
 
-      <motion.div
+      {/* <motion.div
         initial="hidden"
         whileInView="visible"
         variants={fadeInUp}
         viewport={{ once: true }}
       >
         <RelatedBlogs currentId={id} category={blog.category} />
-      </motion.div>
+      </motion.div> */}
 
       <StickyInBlogCTA
         href="/offers"
