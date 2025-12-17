@@ -59,7 +59,7 @@ export const BlogHome = () => {
   }, []);
 
   return (
-    <Container maxWidth="lg" sx={{ mt: 4 }}>
+    <Container maxWidth="lg">
       {/* ✅ SEO Meta Tags */}
       <Helmet>
         <title variant="h3">

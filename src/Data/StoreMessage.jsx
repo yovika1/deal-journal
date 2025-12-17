@@ -21,9 +21,9 @@ export const StoreMessage = ({ url, hasOffer = false}) => {
     
     let storeName = "Main Store";
     if (lowerUrl.includes("fktr.in")) storeName = "flipkart";
+    else if (lowerUrl.includes("bitli.in")) storeName = "mamaearth";
     else if (lowerUrl.includes("amazon")) storeName = "Amazon";
     else if (lowerUrl.includes("myntra")) storeName = "Myntra";
-    else if (lowerUrl.includes("meesho")) storeName = "meesho";
 
     return (
       <Typography color="primary" fontWeight="bold" sx={{
