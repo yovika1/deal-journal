@@ -285,7 +285,7 @@ export const BlogHome = () => {
           <Box
             sx={{
               display: "flex",
-              overflowX: "auto",
+              overflowX: "hidden",
               gap: 1.5,
               px: 1,
               pb: 2,

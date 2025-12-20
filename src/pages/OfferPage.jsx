@@ -163,12 +163,22 @@ export const OffersPage = () => {
                   >
                     {p.productTitle}
                   </Typography>
-                  <Typography variant="h6" color="primary" sx={{ mb: 1 }}>
+                  {/* <Typography variant="h6" color="primary" sx={{ mb: 1 }}>
                     {p.details}
-                  </Typography>
-                  <Typography variant="h6" color="primary" sx={{ mb: 1 }}>
-                    {p.discount}% off
-                  </Typography>
+                  </Typography> */}
+
+                  <Typography 
+                  variant="h6"
+                   sx={{ 
+                    mb: 1 ,
+                    color: p.discount > 0 ? "success.main" : "secondary.main",
+                  }}>
+                    {p.discount > 0
+                      ? `${p.discount}% off`
+                      :`Use Code: ${p.code}`
+                    }
+                    </Typography>
+
 
                   <Rating
                     value={p.rating}
@@ -177,7 +187,7 @@ export const OffersPage = () => {
                     size="small"
                   />
                   <Typography
-                    variant="caption"
+                    variant="outlined"
                     display="block"
                     color="text.secondary"
                   >
