@@ -102,7 +102,7 @@ try {
                     {offer.productTitle || offer.title}
                   </Typography>
 
-                    <StoreMessage url={offer.imageUrl || offer.link} />
+                    <StoreMessage url={ offer.affiliateUrl} />
 
                   <Box sx={{ display: "flex", alignItems: "center", mt: 1, mb: 1 }}>
                     {offer.rating && (
@@ -126,8 +126,15 @@ try {
                     ))}
                   </Box>
 
-                  <Typography color="primary" fontWeight="bold">
-                    {offer.discount}% off
+                  <Typography variant="h6"
+                   sx={{ 
+                    mb: 1 ,
+                    color: offer.discount > 0 ? "success.main" : "secondary.main",
+                  }}>
+                    {offer.discount > 0
+                      ? `${offer.discount}% off`
+                      :`Use Code: ${offer.code}`
+                    }
                   </Typography>
                 </CardContent>
 

@@ -79,7 +79,6 @@ export const BlogHome = () => {
           py: 2,
         }}
       >
-        {/* LEFT SIDE BRAND NAME */}
         <Typography
           variant="h5"
           sx={{
@@ -174,7 +173,6 @@ export const BlogHome = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          mt: 6,
           mb: 3,
           rowGap: 1,
         }}
@@ -182,6 +180,7 @@ export const BlogHome = () => {
         <Typography
           variant="h5"
           sx={{
+           
             fontSize: { xs: "1rem", sm: "1.4rem", md: "1.6rem" },
           }}
         >
@@ -190,6 +189,7 @@ export const BlogHome = () => {
         <Button
           onClick={() => navigate("/bloglistpage?category=fashion")}
           sx={{
+            
             fontSize: { xs: "0.70rem", sm: "0.85rem", md: "1rem" },
             px: { xs: 0.1, sm: 2.5, md: 0 },
             py: { xs: 0.5, sm: 0.7 },
@@ -223,7 +223,6 @@ export const BlogHome = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          mt: 6,
           mb: 3,
           flexWrap: "wrap",
           rowGap: 1,
@@ -275,20 +274,22 @@ export const BlogHome = () => {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
-              mt: 6,
               mb: 3,
             }}
           >
-            <Typography variant="h5">👀 Recently Viewed</Typography>
+            <Typography variant="h5"
+                     sx={{
+            fontSize: { xs: "1rem", sm: "1.4rem", md: "1.6rem" },
+          }}
+            >👀 Recently Viewed</Typography>
           </Box>
 
           <Box
             sx={{
               display: "flex",
-              overflowX: "hidden",
+              overflowX: "auto",
               gap: 1.5,
-              px: 1,
-              pb: 2,
+           
               "&::-webkit-scrollbar": { display: "none" },
             }}
           >

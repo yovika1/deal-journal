@@ -32,8 +32,8 @@ const hasOffer = (blog.details || []).some(
 
   return (
     <motion.div
-      initial="hidden"
-      whileInView="visible"
+      // initial="hidden"
+      // whileInView="visible"
       variants={fadeInUp}
       viewport={{ once: true }}
       style={{ width: "100%"}}
@@ -65,9 +65,14 @@ const hasOffer = (blog.details || []).some(
           <CardContent sx={{ p: 1.2 }}>
             <Typography
               variant="subtitle 2"
-              fontWeight="bold"
-              gutterBottom
-              noWrap
+              fontWeight="bold"              
+              sx={{
+                display: "block",
+                maxWidth: "100%",
+                whiteSpace: { xs: "nowrap", md: "normal" },
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}  
             >
               {blog.productTitle}
             </Typography>

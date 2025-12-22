@@ -95,7 +95,18 @@ export const BlogDetail = () => {
                 p: 3,
               }}
             >
-              <Typography
+             
+              <Typography variant="subtitle5" fontWeight="bold" fontSize={19}>
+                {blog.productTitle || "No Title"}
+              </Typography>
+            </Box>
+          </Box>
+        </motion.div>
+      )}
+
+      <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
+        <Box sx={{ mb: 3 }}>
+           <Typography
                 variant="h3"
                 fontSize={14}
                 sx={{
@@ -110,20 +121,12 @@ export const BlogDetail = () => {
               >
                 {blog.product?.productName || "No Product Name"}
               </Typography>
-              <Typography variant="subtitle5" fontWeight="bold" fontSize={19}>
-                {blog.productTitle || "No Title"}
-              </Typography>
-            </Box>
-          </Box>
-        </motion.div>
-      )}
 
-      <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
-        <Box sx={{ mb: 3 }}>
-          <Typography variant="body1" sx={{ lineHeight: 1.7 }}>
+              {/* ************** Experience *********************** */}
+          {/* <Typography variant="body1" sx={{ lineHeight: 1.7 }}>
             {blog.intro ||
               "Every buyer faces the same problem: finding a product that actually delivers results. Here’s my experience…"}
-          </Typography>
+          </Typography> */}
         </Box>
       </motion.div>
 

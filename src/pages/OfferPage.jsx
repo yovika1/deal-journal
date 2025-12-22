@@ -104,7 +104,7 @@ export const OffersPage = () => {
   >
           <ToggleButton value="all">All</ToggleButton>
           <ToggleButton value="fashion">Fashion</ToggleButton>
-          <ToggleButton value="cosmetics">Cosmetics</ToggleButton>
+          <ToggleButton value="beauty">Cosmetics</ToggleButton>
         </ToggleButtonGroup>
 
         <Chip
@@ -121,7 +121,7 @@ export const OffersPage = () => {
           variant="h6"
           color="text.secondary"
           align="center"
-          sx={{ mt: 5 }}
+          sx={{ mt: 5,}}
         >
           🚫 No offers available right now. Please check back later!
         </Typography>
@@ -131,6 +131,7 @@ export const OffersPage = () => {
             <Grid item xs={12} sm={6} md={4} key={p._id || p.productTitle}>
               <Card
                 sx={{
+                  // marginLeft:"50px",
                   borderRadius: 4,
                   width:274,
                   height: 480,
