@@ -61,7 +61,7 @@ export const OffPrice = ({ blog, fadeInUp }) => {
         {otherDetails.map((d, i) =>
           d.name ? (
             <Typography key={i} variant="body1" sx={{ mb: 1 }}>
-              ✅<strong> {d.name}</strong>{''}
+              <strong> {d.name}</strong>{''}
               {d.value || ""}
             </Typography>
           ) : null

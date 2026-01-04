@@ -15,7 +15,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { ChevronLeft, ChevronRight } from "@mui/icons-material"; // 🔥 CHANGED
+import { ChevronLeft, ChevronRight } from "@mui/icons-material"; 
 
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import API_BASE from "../config";
@@ -143,7 +143,7 @@ try {
                     variant="contained"
                     color="secondary"
                     fullWidth
-                    href={offer.productUrl || offer.link}
+                    href={offer.affiliateUrl}
                     target="_blank"
                     sx={{ borderRadius: 2, textTransform: "none", fontWeight: "bold" }}
                   >

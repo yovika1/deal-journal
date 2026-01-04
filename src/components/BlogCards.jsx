@@ -50,6 +50,7 @@ const hasOffer = (blog.details || []).some(
           mb: 2,
           flexShrink: 0, 
            cursor: "pointer",
+           
         }}
       >
         <CardActionArea onClick={() => navigate(`/getBlogs/${blog._id}`)}>
@@ -69,7 +70,7 @@ const hasOffer = (blog.details || []).some(
               sx={{
                 display: "block",
                 maxWidth: "100%",
-                whiteSpace: { xs: "nowrap", md: "normal" },
+                whiteSpace:  "nowrap" ,
                 overflow: "hidden",
                 textOverflow: "ellipsis",
               }}  
