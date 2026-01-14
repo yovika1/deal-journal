@@ -28,7 +28,7 @@ export const OffersPage = () => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios.get(`${API_BASE}/getoffers`); 
+        const res = await axios.get(`${API_BASE}/getoffers`);
         setOffers(res?.data);
       } catch (e) {
         console.error("Error fetching offers:", e);
@@ -40,7 +40,7 @@ export const OffersPage = () => {
     (o) =>
       (cat === "all" || o.category === cat) &&
       (q.trim() === "" || o.title.toLowerCase().includes(q.toLowerCase()))
-  )
+  );
 
   return (
     <Container maxWidth="lg" sx={{ mt: 6, mb: 6 }}>
@@ -60,7 +60,7 @@ export const OffersPage = () => {
       >
         Grab the hottest deals before they’re gone! ✨
       </Typography>
-      <FeaturedOffers/>
+      <FeaturedOffers />
 
       {/* Filters */}
       <Stack
@@ -68,40 +68,37 @@ export const OffersPage = () => {
         spacing={2}
         alignItems="center"
         justifyContent="center"
-        sx={{ mb: 4 ,
-             px: { xs: 1, sm: 4, md: 6 }, 
-
-        }}
+        sx={{ mb: 4, px: { xs: 1, sm: 4, md: 6 } }}
       >
         <ToggleButtonGroup
-    value={cat}
-    exclusive
-    onChange={(e, v) => setCat(v || "all")}
-    sx={{
-      backgroundColor: "rgba(255,255,255,0.9)",
-      borderRadius: 3,
-      fontSize:{xs:10},
-      boxShadow: 3,
-      "& .MuiToggleButton-root": {
-        px: 3,
-        py: 1,
-        fontWeight: "bold",
-        color: "#555",
-        border: "none",
-        transition: "all 0.3s",
-      },
-      "& .Mui-selected": {
-        backgroundColor: "#f3a0e5ff",
-        color: "#272323ff",
-        "&:hover": {
-          backgroundColor: "#d420ecff",
-        },
-      },
-      "& .MuiToggleButton-root:hover": {
-        backgroundColor: "rgba(220, 64, 255, 0.1)",
-      },
-    }}
-  >
+          value={cat}
+          exclusive
+          onChange={(e, v) => setCat(v || "all")}
+          sx={{
+            backgroundColor: "rgba(255,255,255,0.9)",
+            borderRadius: 3,
+            fontSize: { xs: 10 },
+            boxShadow: 3,
+            "& .MuiToggleButton-root": {
+              px: 3,
+              py: 1,
+              fontWeight: "bold",
+              color: "#555",
+              border: "none",
+              transition: "all 0.3s",
+            },
+            "& .Mui-selected": {
+              backgroundColor: "#f3a0e5ff",
+              color: "#272323ff",
+              "&:hover": {
+                backgroundColor: "#d420ecff",
+              },
+            },
+            "& .MuiToggleButton-root:hover": {
+              backgroundColor: "rgba(220, 64, 255, 0.1)",
+            },
+          }}
+        >
           <ToggleButton value="all">All</ToggleButton>
           <ToggleButton value="fashion">Fashion</ToggleButton>
           <ToggleButton value="beauty">Cosmetics</ToggleButton>
@@ -121,19 +118,19 @@ export const OffersPage = () => {
           variant="h6"
           color="text.secondary"
           align="center"
-          sx={{ mt: 5,}}
+          sx={{ mt: 5 }}
         >
           🚫 No offers available right now. Please check back later!
         </Typography>
       ) : (
-        <Grid container spacing={4}>
+        <Grid container spacing={2}>
           {shown?.map((p) => (
             <Grid item xs={12} sm={6} md={4} key={p._id || p.productTitle}>
               <Card
                 sx={{
                   // marginLeft:"50px",
                   borderRadius: 4,
-                  width:274,
+                  width: 274,
                   height: 480,
                   display: "flex",
                   flexDirection: "column",
@@ -148,11 +145,15 @@ export const OffersPage = () => {
                 {/* Image */}
                 <CardMedia
                   component="img"
-                  width='100%'
+                  width="100%"
                   height="180"
                   image={p.imageUrl}
                   alt={p.title}
-                  sx={{ objectFit: "cover", borderTopLeftRadius: 16, borderTopRightRadius: 16 }}
+                  sx={{
+                    objectFit: "cover",
+                    borderTopLeftRadius: 16,
+                    borderTopRightRadius: 16,
+                  }}
                 />
 
                 {/* Content */}
@@ -160,7 +161,13 @@ export const OffersPage = () => {
                   <Typography
                     variant="h6"
                     fontWeight="bold"
-                    sx={{ mb: 1 }}
+                    sx={{
+                      mb: 1,
+                      overflow: "hidden",
+                      display: "-webkit-box",
+                      WebkitBoxOrient: "vertical",
+                      WebkitLineClamp: { xs: 1, md: 2 },
+                    }}
                   >
                     {p.productTitle}
                   </Typography>
@@ -168,18 +175,17 @@ export const OffersPage = () => {
                     {p.details}
                   </Typography> */}
 
-                  <Typography 
-                  variant="h6"
-                   sx={{ 
-                    mb: 1 ,
-                    color: p.discount > 0 ? "success.main" : "secondary.main",
-                  }}>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      mb: 1,
+                      color: p.discount > 0 ? "success.main" : "secondary.main",
+                    }}
+                  >
                     {p.discount > 0
                       ? `${p.discount}% off`
-                      :`Use Code: ${p.code}`
-                    }
-                    </Typography>
-
+                      : `Use Code: ${p.code}`}
+                  </Typography>
 
                   <Rating
                     value={p.rating}
@@ -196,7 +202,9 @@ export const OffersPage = () => {
                   </Typography>
 
                   {/* Badges */}
-                  <Box sx={{ mt: 1, display: "flex", gap: 1, flexWrap: "wrap" }}>
+                  <Box
+                    sx={{ mt: 1, display: "flex", gap: 1, flexWrap: "wrap" }}
+                  >
                     {p.badges?.map((b, i) => (
                       <Chip
                         key={i}
@@ -216,7 +224,6 @@ export const OffersPage = () => {
                       sx={{ display: "block", mt: 2, fontWeight: "bold" }}
                     >
                       ⏳ <CountdownTimer expiry={p.expiry} />
-
                     </Typography>
                   )}
                 </CardContent>
@@ -229,7 +236,11 @@ export const OffersPage = () => {
                     color="secondary"
                     fullWidth
                     onClick={() => window.open(p.affiliateUrl, "_blank")}
-                    sx={{ borderRadius: 3, textTransform: "none", fontWeight: "bold" }}
+                    sx={{
+                      borderRadius: 3,
+                      textTransform: "none",
+                      fontWeight: "bold",
+                    }}
                   >
                     🛒 Grab Deal
                   </Button>
