@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 const formatCountdown = (end) => {
   if (!end) return null;
 
-  const diff = Math.max(0, new Date(end) - Date.now()); // ms difference
+  const diff = Math.max(0, new Date(end) - Date.now());
 
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
   const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -24,9 +24,9 @@ export const CountdownTimer = ({ expiry }) => {
     if (!expiry) return;
 
     const update = () => setTimeLeft(formatCountdown(expiry));
-    update(); // run immediately
+    update(); 
 
-    const interval = setInterval(update, 1000); // update every second
+    const interval = setInterval(update, 1000);
     return () => clearInterval(interval);
   }, [expiry]);
 
