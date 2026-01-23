@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Typography, Divider, Button, Box } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { RelatedBlogs } from "../components/RelatedBlogs";
+// import { RelatedBlogs } from "../components/RelatedBlogs";
 import { StickyInBlogCTA } from "../components/StickyCTA";
 import { EmailLeadMagnet } from "./EmailLeadMagnet";
 import { TopPicks } from "../components/ProductBuild/Toppicks";
