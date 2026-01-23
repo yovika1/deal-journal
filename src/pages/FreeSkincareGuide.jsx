@@ -65,21 +65,24 @@ export const FreeSkincareGuide = () => {
         variant="body1"
         sx={{ mb: 4, textAlign: "center", fontSize: "1.1rem" }}
       >
-        This exclusive guide is crafted for readers who want a quick but effective skincare
-        routine. Each tip includes expert-backed advice along with products you can shop instantly.
+        Discover simple, dermatologist-inspired skincare tips that help improve glow, texture, and overall skin health.
+        Each tip includes a carefully selected product you can explore instantly.
+
       </Typography>
 
       <Divider sx={{ my: 4 }}>✨</Divider>
 
        {/* Render FreeGuidance Cards  */}
-          {guides.map((guide, index) => (
+          {guides
+          ?.slice() 
+         .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+          .map((guide, index) => (
          <FreeGuideCard key={guide._id} guide={guide} index={index} />
 ))}
 
 
       <Divider sx={{ my: 4 }}>💬</Divider>
 
-      {/* CTA Footer */}
       <Box
         sx={{
           textAlign: "center",

@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { Grid, Typography, Button, Divider, Box } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { motion } from "framer-motion";
+import ReactMarkdown from "react-markdown";
+
 
 export const FreeGuideCard = ({ guide, index }) => {
   if (!guide) return null;
@@ -29,8 +31,9 @@ export const FreeGuideCard = ({ guide, index }) => {
               src={guide.image}
               alt={guide.heading}
               sx={{
-                width: "37vh",
-                maxWidth: { xs: "100%", sm: "400px", },
+                width: "100%",
+                maxWidth: 380, 
+                // maxWidth: { xs: "100%", sm: "400px", },
                 height: { xs: 180, sm: 250, md: 220 },
                 borderRadius: 9,
                 objectFit: "cover",
@@ -45,7 +48,12 @@ export const FreeGuideCard = ({ guide, index }) => {
         </Grid>
 
         {/* Text Section */}
-        <Grid item xs={12} md={7}>
+        <Grid item xs={12} md={7}
+        sx={{
+              pl: { md: index % 2 === 0 ? 4 : 0 },
+              pr: { md: index % 2 !== 0 ? 4 : 0 },
+        }}
+        >
           <Typography
             variant="h6"
             fontWeight="bold"
@@ -55,6 +63,7 @@ export const FreeGuideCard = ({ guide, index }) => {
               alignItems: "center",
               gap: 1,
               fontSize: { xs: "1rem", sm: "1.25rem" },
+          
             }}
             component={motion.div}
             initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
@@ -65,17 +74,25 @@ export const FreeGuideCard = ({ guide, index }) => {
             💡 Tip #{index + 1}: {guide.heading}
           </Typography>
 
-          <Typography
-            variant="body1"
-            sx={{
-              mb: 2,
-              fontSize: { xs: "0.9rem", sm: "1rem" },
-              lineHeight: 1.6,
-              ml:'17%'
-            }}
-          >
+      <ReactMarkdown
+         components={{
+    p: ({ children }) => (
+      <Typography
+        variant="body1"
+        sx={{
+          // width: "70%",
+          mb: 2,
+          fontSize: { xs: "0.9rem", sm: "1rem" },
+          lineHeight: 1.6,
+          ml: "1%",
+        }}
+      >
+        {children}
+      </Typography>
+    )}}>
             {guide.description}
-          </Typography>
+          </ReactMarkdown>
+
 
           {guide.productLink && (
             <motion.div
