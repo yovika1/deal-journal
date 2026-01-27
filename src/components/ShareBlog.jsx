@@ -35,12 +35,15 @@ export const ShareButtons = ({ shareUrl, fadeInUp }) => {
           }}
         >
           <IconButton
-            onClick={() =>
+            onClick={() =>{
+                      const message = `"🔥 Found something useful! Check this 👉 "
+: ${shareUrl}`;
+
               window.open(
-                `https://wa.me/?text=Check this out: ${shareUrl}`,
+                `https://wa.me/?text=${encodeURIComponent(message)}`,
                 "_blank"
               )
-            }
+            }}
           >
             <WhatsAppIcon sx={{ fontSize: 32, color: "#25D366" }} />
           </IconButton>

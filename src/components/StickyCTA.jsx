@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 // import CountdownBadge from "./ProductBuild/CountdownBadget";
 
-export const StickyInBlogCTA =({ label = "Shop Now", href = "/offers", dealEndsAt })=> {
+export const StickyInBlogCTA =({ label = "Shop Now", href = "/explore-offers", dealEndsAt })=> {
   return (
     <div style={{
       position: "fixed", right: 20, bottom: 20, zIndex: 1300,

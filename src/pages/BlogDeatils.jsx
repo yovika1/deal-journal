@@ -269,7 +269,7 @@ export const BlogDetail = () => {
       </motion.div> */}
 
       <StickyInBlogCTA
-        href="/offers"
+        href="/explore-offers"
         dealEndsAt={new Date(Date.now() + 2 * 3600e3)}
       />
       <EmailLeadMagnet open={leadOpen} onClose={() => setLeadOpen(false)} />

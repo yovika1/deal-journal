@@ -66,7 +66,7 @@ export const BlogFeedback = ({ blogId, category }) => {
             color="primary"
             onClick={() =>
               window.open(
-                affiliateLinks[category] || "/getoffers",
+                affiliateLinks[category] || "/explore-offers",
                 "_blank"
               )
             }
