@@ -77,6 +77,7 @@ export const BlogDetail = () => {
               borderRadius: "16px",
               overflow: "hidden",
               boxShadow: "0 8px 20px rgba(0,0,0,0.15)",
+              scrollMarginTop:0
             }}
           >
             <img

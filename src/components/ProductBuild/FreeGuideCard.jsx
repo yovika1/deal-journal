@@ -80,7 +80,6 @@ export const FreeGuideCard = ({ guide, index }) => {
       <Typography
         variant="body1"
         sx={{
-          // width: "70%",
           mb: 2,
           fontSize: { xs: "0.9rem", sm: "1rem" },
           lineHeight: 1.6,

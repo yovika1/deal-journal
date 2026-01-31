@@ -114,6 +114,42 @@ export const BlogHome = () => {
 
       {/* <Divider sx={{ my: 5 }} /> */}
 
+          {/* 🎉 Special Days Section */}
+{blogs.filter((b) => b.specialDay === "valentines").length > 0 && (
+  <>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        mb: 3,
+      }}
+    >
+      <Typography variant="h5">💖 Valentine’s Special</Typography>
+      <Button onClick={() => navigate("/bloglistpage?special=valentines")}>
+        View All
+      </Button>
+    </Box>
+
+    <Box
+      sx={{
+        display: "flex",
+        overflowX: "auto",
+        gap: 1.5,
+        px: 1,
+        pb: 2,
+        "&::-webkit-scrollbar": { display: "none" },
+      }}
+    >
+      {blogs
+        .filter((b) => b.specialDay === "valentines")
+        .map((blog) => (
+          <BlogCard key={blog._id} blog={blog} />
+        ))}
+    </Box>
+  </>
+)}
+
       {/* ✅ Latest Blogs Section */}
       <Box
         sx={{
