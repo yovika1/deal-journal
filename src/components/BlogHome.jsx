@@ -33,6 +33,7 @@ export const BlogHome = () => {
           _id: item._id,
           productTitle: item.productTitle,
           category: item.category || "general",
+            specialDay: item.specialDay || null,
           productUrl: item.product?.affiliateUrl || "",
           details: item.details || [],
 
