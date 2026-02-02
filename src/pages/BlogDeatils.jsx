@@ -83,7 +83,7 @@ export const BlogDetail = () => {
             <img
               src={blog.product?.imageUrl}
               alt={blog.product?.title || "Blog Image"}
-              style={{ width: "100%", maxHeight: "79vh" }}
+              style={{ width: "100%", maxHeight: "79vh" ,objectFit : "contain"}}
             />
             <Box
               sx={{
