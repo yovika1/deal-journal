@@ -45,7 +45,7 @@ export const BlogHome = () => {
           },
         }));
 
-        setBlogs(mapped);
+        setBlogs(mapped.reverse());
       } catch (e) {
         console.error("Error fetching blogs:", e);
       } finally {
@@ -58,6 +58,15 @@ export const BlogHome = () => {
     const items = JSON.parse(localStorage.getItem("recentBlogs")) || [];
     setRecent(items);
   }, []);
+
+  const valentineBlogs = blogs.filter(
+  (b) => b.specialDay === "valentines"
+);
+
+const latestBlogs = blogs.filter(
+  (b) =>  b.category === "general" &&
+    !b.specialDay
+);
 
   return (
     <Container maxWidth="lg">
@@ -116,7 +125,7 @@ export const BlogHome = () => {
       {/* <Divider sx={{ my: 5 }} /> */}
 
           {/* 🎉 Special Days Section */}
-{blogs.filter((b) => b.specialDay === "valentines").length > 0 && (
+{valentineBlogs.length > 0 && (
   <>
     <Box
       sx={{
@@ -142,9 +151,7 @@ export const BlogHome = () => {
         "&::-webkit-scrollbar": { display: "none" },
       }}
     >
-      {blogs
-        .filter((b) => b.specialDay === "valentines")
-        .map((blog) => (
+      {valentineBlogs.map((blog) => (
           <BlogCard key={blog._id} blog={blog} />
         ))}
     </Box>
@@ -182,7 +189,7 @@ export const BlogHome = () => {
         >
           <CircularProgress color="secondary" />
         </Box>
-      ) : blogs.filter((b) => b.category === "general").length > 0 ? (
+      ) : latestBlogs.length > 0 ? (
         <Box
           sx={{
             display: "flex",
@@ -193,9 +200,7 @@ export const BlogHome = () => {
             "&::-webkit-scrollbar": { display: "none" },
           }}
         >
-          {blogs
-            .filter((b) => b.category === "general")
-            .map((blog) => (
+          {latestBlogs.map((blog) => (
               <BlogCard key={blog._id} blog={blog} />
             ))}
         </Box>

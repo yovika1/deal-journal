@@ -36,7 +36,7 @@ export const ShareButtons = ({ shareUrl, fadeInUp }) => {
         >
           <IconButton
             onClick={() =>{
-                      const message = `"🔥 Found something useful! Check this 👉 "
+                      const message = `🔥 Found something useful! Check this 👉 
 : ${shareUrl}`;
 
               window.open(
