@@ -14,6 +14,7 @@ import { FeaturedOffers } from "./FeaturedProduct";
 import API_BASE from "../config";
 import axios from "axios";
 import { TestimonialsSection } from "./TestimonialsSection";
+import { motion } from "framer-motion";
 // import { RelatedBlogs } from "./RelatedBlogs";
 
 export const BlogHome = () => {
@@ -106,6 +107,36 @@ export const BlogHome = () => {
         <Typography variant="h6" color="text.secondary" sx={{ mb: 3 }}>
           Your trusted <strong>beauty & fashion blog</strong> with guides, tips,
           and product reviews that really work.
+        </Typography>
+
+        <Typography textAlign="center" mb={3}>
+          <Typography
+            sx={{
+              fontSize: "1rem",
+              color: "text.secondary",
+            }}
+          >
+            <strong>
+         Selected after comparing multiple options — buy with confidence.            </strong>
+          </Typography>
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: "100%" }}
+            transition={{ duration: 1.5 }}
+            style={{ overflow: "hidden", whiteSpace: "nowrap" }}
+          >
+            <Typography
+              sx={{
+                fontSize: "1.5rem",
+                fontWeight: 700,
+                textAlign: "center",
+                fontFamily: "'Playfair Display', serif",
+                color: "#c2185b",
+              }}
+            >
+              Tap it. Love it. Own it.
+            </Typography>
+          </motion.div>
         </Typography>
 
         <Button
