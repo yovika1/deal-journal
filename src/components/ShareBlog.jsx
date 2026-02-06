@@ -10,6 +10,20 @@ export const ShareButtons = ({ shareUrl, fadeInUp }) => {
     navigator.clipboard.writeText(shareUrl);
     setOpen(true);
   };
+  <head>
+  <title>RangyBlux</title>
+
+  <meta name="description" content="Hand-picked blogs & smart finds you’ll love ✨" />
+
+  <meta property="og:title" content="🔥 Found something useful!" />
+  <meta property="og:description" content="Tap to read this hand-picked blog on RangyBlux 👇" />
+  <meta property="og:image" content="https://www.rangyblux.com/preview.jpg" />
+  <meta property="og:url" content="https://www.rangyblux.com" />
+  <meta property="og:type" content="website" />
+</head>
+
+    const message = `🔥 Found something useful! Check this 👉 ${shareUrl}`;
+          const whatsappLink = `https://wa.me/?text=${encodeURIComponent(message)}`;
 
   return (
     <>
@@ -34,16 +48,11 @@ export const ShareButtons = ({ shareUrl, fadeInUp }) => {
             },
           }}
         >
-          <IconButton
-            onClick={() =>{
-                      const message = `🔥 Found something useful! Check this 👉 
-: ${shareUrl}`;
-
-              window.open(
-                `https://wa.me/?text=${encodeURIComponent(message)}`,
-                "_blank"
-              )
-            }}
+      
+          <IconButton   component="a"
+  href={whatsappLink}
+  target="_blank"
+  rel="noopener noreferrer"
           >
             <WhatsAppIcon sx={{ fontSize: 32, color: "#25D366" }} />
           </IconButton>
@@ -58,6 +67,7 @@ export const ShareButtons = ({ shareUrl, fadeInUp }) => {
               bgcolor: "#25D366",
               transition: "width 0.3s ease",
               borderRadius: 1,
+              pointerEvents: "none"
             }}
           />
         </Box>
@@ -77,8 +87,10 @@ export const ShareButtons = ({ shareUrl, fadeInUp }) => {
           <IconButton
             onClick={() =>
               window.open(
-                `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`,
-                "_blank"
+      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+        shareUrl
+      )}`,
+      "_blank"
               )
             }
           >

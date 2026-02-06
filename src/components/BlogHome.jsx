@@ -33,7 +33,7 @@ export const BlogHome = () => {
           _id: item._id,
           productTitle: item.productTitle,
           category: item.category || "general",
-            specialDay: item.specialDay || null,
+          specialDay: item.specialDay || null,
           productUrl: item.product?.affiliateUrl || "",
           details: item.details || [],
 
@@ -59,14 +59,11 @@ export const BlogHome = () => {
     setRecent(items);
   }, []);
 
-  const valentineBlogs = blogs.filter(
-  (b) => b.specialDay === "valentines"
-);
+  const valentineBlogs = blogs.filter((b) => b.specialDay === "valentines");
 
-const latestBlogs = blogs.filter(
-  (b) =>  b.category === "general" &&
-    !b.specialDay
-);
+  const latestBlogs = blogs.filter(
+    (b) => b.category === "general" && !b.specialDay,
+  );
 
   return (
     <Container maxWidth="lg">
@@ -124,39 +121,41 @@ const latestBlogs = blogs.filter(
 
       {/* <Divider sx={{ my: 5 }} /> */}
 
-          {/* 🎉 Special Days Section */}
-{valentineBlogs.length > 0 && (
-  <>
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        mb: 3,
-      }}
-    >
-      <Typography variant="h5">💖 Valentine’s Special</Typography>
-      <Button onClick={() => navigate("/bloglistpage?special=valentines")}>
-        View All
-      </Button>
-    </Box>
+      {/* 🎉 Special Days Section */}
+      {valentineBlogs.length > 0 && (
+        <>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              mb: 3,
+            }}
+          >
+            <Typography variant="h5">💖 Valentine’s Special</Typography>
+            <Button
+              onClick={() => navigate("/bloglistpage?special=valentines")}
+            >
+              View All
+            </Button>
+          </Box>
 
-    <Box
-      sx={{
-        display: "flex",
-        overflowX: "auto",
-        gap: 1.5,
-        px: 1,
-        pb: 2,
-        "&::-webkit-scrollbar": { display: "none" },
-      }}
-    >
-      {valentineBlogs.map((blog) => (
-          <BlogCard key={blog._id} blog={blog} />
-        ))}
-    </Box>
-  </>
-)}
+          <Box
+            sx={{
+              display: "flex",
+              overflowX: "auto",
+              gap: 1.5,
+              px: 1,
+              pb: 2,
+              "&::-webkit-scrollbar": { display: "none" },
+            }}
+          >
+            {valentineBlogs.map((blog) => (
+              <BlogCard key={blog._id} blog={blog} />
+            ))}
+          </Box>
+        </>
+      )}
 
       {/* ✅ Latest Blogs Section */}
       <Box
@@ -201,8 +200,8 @@ const latestBlogs = blogs.filter(
           }}
         >
           {latestBlogs.map((blog) => (
-              <BlogCard key={blog._id} blog={blog} />
-            ))}
+            <BlogCard key={blog._id} blog={blog} />
+          ))}
         </Box>
       ) : (
         <Typography variant="body2" color="text.secondary">
@@ -222,7 +221,6 @@ const latestBlogs = blogs.filter(
         <Typography
           variant="h5"
           sx={{
-           
             fontSize: { xs: "1rem", sm: "1.4rem", md: "1.6rem" },
           }}
         >
@@ -231,7 +229,6 @@ const latestBlogs = blogs.filter(
         <Button
           onClick={() => navigate("/bloglistpage?category=fashion")}
           sx={{
-            
             fontSize: { xs: "0.70rem", sm: "0.85rem", md: "1rem" },
             px: { xs: 0.1, sm: 2.5, md: 0 },
             py: { xs: 0.5, sm: 0.7 },
@@ -319,11 +316,14 @@ const latestBlogs = blogs.filter(
               mb: 3,
             }}
           >
-            <Typography variant="h5"
-                     sx={{
-            fontSize: { xs: "1rem", sm: "1.4rem", md: "1.6rem" },
-          }}
-            >👀 Recently Viewed</Typography>
+            <Typography
+              variant="h5"
+              sx={{
+                fontSize: { xs: "1rem", sm: "1.4rem", md: "1.6rem" },
+              }}
+            >
+              👀 Recently Viewed
+            </Typography>
           </Box>
 
           <Box
@@ -331,7 +331,7 @@ const latestBlogs = blogs.filter(
               display: "flex",
               overflowX: "auto",
               gap: 1.5,
-           
+
               "&::-webkit-scrollbar": { display: "none" },
             }}
           >
