@@ -101,19 +101,55 @@ export const BlogHome = () => {
         </Typography>
       </Box>
       <Box sx={{ textAlign: "center", mb: 6 }}>
-        <Typography variant="h3" sx={{ mb: 2, fontWeight: "bold" }}>
+        <Typography variant="h3" 
+        sx={{
+            mb: 2,
+            mr:4,
+              color: "#c2185b",
+            fontWeight: "bold",
+            fontSize: { xs: "1.5rem", sm: "2rem", md: "2.5rem" },
+
+         }}>
           ✨ Glow With Us
         </Typography>
-        <Typography variant="h6" color="text.secondary" sx={{ mb: 3 }}>
-          Your trusted <strong>beauty & fashion blog</strong> with guides, tips,
-          and product reviews that really work.
+
+        <Typography  color="text.secondary"
+         sx={{ 
+          mb: 1,
+          fontSize: { xs: "0.95rem",
+          sm: "1.05rem", 
+          md: "1.55rem" ,
+            color: "text.secondary",
+
+        },
+
+          }}>
+           Your trusted{" "}
+  <Typography
+    component="span"
+    sx={{
+      color: "#c2185b",
+      fontWeight: 600,
+       fontSize: { xs: "0.95rem",
+          sm: "1.05rem", 
+          md: "1.55rem" ,
+       }
+    }}
+  >
+    beauty & fashion blog
+  </Typography>{" "}
+  with guides, tips,and product reviews that really work.
         </Typography>
 
         <Typography textAlign="center" mb={3}>
           <Typography
             sx={{
-              fontSize: "1rem",
+              fontSize: { xs: "0.85rem",
+                 sm: "0.95rem",
+                  md: "1rem"
+                 },
               color: "text.secondary",
+              
             }}
           >
             <strong>
@@ -127,7 +163,7 @@ export const BlogHome = () => {
           >
             <Typography
               sx={{
-                fontSize: "1.5rem",
+                fontSize: { xs: "1.1rem", sm: "1.3rem", md: "1.5rem" },
                 fontWeight: 700,
                 textAlign: "center",
                 fontFamily: "'Playfair Display', serif",
@@ -161,12 +197,22 @@ export const BlogHome = () => {
               justifyContent: "space-between",
               alignItems: "center",
               mb: 3,
+              
             }}
           >
-            <Typography variant="h5">💖 Valentine’s Special</Typography>
+            <Typography variant="h5"
+            sx={{
+            fontSize: { xs: "1rem", sm: "1.4rem", md: "1.6rem" },
+
+            }}
+            >💖 Valentine’s Special</Typography>
             <Button
               onClick={() => navigate("/bloglistpage?special=valentines")}
+                sx={{
+            fontSize: { xs: "0.70rem", sm: "0.85rem", md: "1rem" },
+          }}
             >
+              
               View All
             </Button>
           </Box>
