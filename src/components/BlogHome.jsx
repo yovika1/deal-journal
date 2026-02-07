@@ -138,7 +138,7 @@ export const BlogHome = () => {
   >
     beauty & fashion blog
   </Typography>{" "}
-  with guides, tips,and product reviews that really work.
+for carefully reviewed products that are truly worth buying.
         </Typography>
 
         <Typography textAlign="center" mb={3}>
