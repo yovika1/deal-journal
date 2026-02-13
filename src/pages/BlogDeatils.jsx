@@ -97,7 +97,7 @@ export const BlogDetail = () => {
               }}
             >
              
-              <Typography variant="subtitle5" fontWeight="bold" fontSize={19}>
+              <Typography variant="subtitle5" fontWeight="bold" fontSize={1}>
                 {blog.productTitle || "No Title"}
               </Typography>
             </Box>
